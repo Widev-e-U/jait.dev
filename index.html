@@ -44,21 +44,17 @@
         radial-gradient(ellipse 600px 400px at 80% 70%, rgba(59,130,246,0.04), transparent),
         radial-gradient(ellipse 500px 500px at 50% 100%, rgba(139,92,246,0.03), transparent);
     }
-    html.light .hero-card {
+
+    html.light .sections-wrapper {
       background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(250,250,252,0.88) 60%, rgba(230,235,245,0.5));
       box-shadow: 0 36px 120px -64px rgba(0,0,0,0.1);
     }
-    html.light .hero-card::before {
+    html.light .sections-wrapper::before {
       background:
         radial-gradient(circle 320px at -8% -14%, rgba(56,189,248,0.08), transparent),
         radial-gradient(circle 360px at 108% 10%, rgba(34,211,238,0.06), transparent),
         radial-gradient(circle 400px at 28% 118%, rgba(52,211,153,0.06), transparent);
     }
-    html.light .sections-wrapper {
-      background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(248,248,252,0.88) 60%, rgba(235,240,250,0.4));
-      box-shadow: 0 24px 80px -48px rgba(0,0,0,0.08);
-    }
-    html.light .sections-wrapper::before { opacity: 0.35; }
     html.light .quick-install {
       background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(248,248,252,0.88));
       box-shadow: 0 24px 80px -48px rgba(0,0,0,0.08);
@@ -335,33 +331,6 @@
     .control-surface { animation: scaleIn 0.8s cubic-bezier(0.16,1,0.3,1) 0.4s both; }
 
     /* ── Hero ──────────────────────────────────── */
-    .hero-wrapper {
-      position: relative;
-      padding: 60px 32px 48px;
-      display: flex;
-      justify-content: center;
-    }
-    .hero-card {
-      position: relative;
-      width: 100%;
-      max-width: 1400px;
-      overflow: hidden;
-      border-radius: 2rem;
-      border: 1px solid var(--border);
-      background: linear-gradient(135deg, rgba(9,9,11,0.95), rgba(9,9,11,0.85) 60%, rgba(38,38,42,0.35));
-      backdrop-filter: blur(20px);
-      box-shadow: 0 36px 120px -64px rgba(15,23,42,0.5);
-    }
-    .hero-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background:
-        radial-gradient(circle 320px at -8% -14%, rgba(56,189,248,0.14), transparent),
-        radial-gradient(circle 360px at 108% 10%, rgba(34,211,238,0.12), transparent),
-        radial-gradient(circle 400px at 28% 118%, rgba(52,211,153,0.12), transparent);
-    }
     .hero-grid {
       position: relative;
       display: grid;
@@ -586,13 +555,21 @@
     .cs-flow-item .status-queued  { color: #64748b; }
 
     /* ── Sections wrapper (single unified card) ─── */
+    .sections-outer {
+      padding: 60px 32px 0;
+      display: flex;
+      justify-content: center;
+    }
     .sections-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
       border-radius: 2rem;
       border: 1px solid var(--border);
-      background: linear-gradient(135deg, rgba(9,9,11,0.92), rgba(15,15,20,0.85) 60%, rgba(38,38,42,0.25));
+      background: linear-gradient(135deg, rgba(9,9,11,0.95), rgba(9,9,11,0.85) 60%, rgba(38,38,42,0.35));
       backdrop-filter: blur(20px);
-      box-shadow: 0 24px 80px -48px rgba(2,6,23,0.6);
-      position: relative;
+      box-shadow: 0 36px 120px -64px rgba(15,23,42,0.5);
       overflow: hidden;
       margin-bottom: 32px;
     }
@@ -601,10 +578,10 @@
       position: absolute;
       inset: 0;
       pointer-events: none;
-      opacity: 0.5;
       background:
-        radial-gradient(ellipse 400px 300px at 90% -10%, rgba(56,189,248,0.08), transparent),
-        radial-gradient(ellipse 400px 300px at 10% 110%, rgba(52,211,153,0.08), transparent);
+        radial-gradient(circle 320px at -8% -14%, rgba(56,189,248,0.14), transparent),
+        radial-gradient(circle 360px at 108% 10%, rgba(34,211,238,0.12), transparent),
+        radial-gradient(circle 400px at 28% 118%, rgba(52,211,153,0.12), transparent);
     }
 
     /* ── Section cards (inside unified wrapper) ─ */
@@ -1129,7 +1106,7 @@
     /* ── Responsive ────────────────────────────── */
     @media (max-width: 768px) {
       .container { padding: 0 16px; }
-      .hero-wrapper { padding: 40px 16px 32px; }
+      .sections-outer { padding: 40px 16px 0; }
       .hero-tagline { font-size: 1.8rem; }
       .hero-desc { font-size: 0.95rem; }
       .hero-grid { padding: 28px; }
@@ -1150,9 +1127,9 @@
     <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
   </button>
 
-  <!-- ══════ Hero ══════ -->
-  <div class="hero-wrapper">
-    <div class="hero-card">
+  <!-- ══════ Unified card ══════ -->
+  <div class="sections-outer">
+    <div class="sections-wrapper">
       <div class="hero-grid">
         <!-- Left column -->
         <div>
@@ -1336,11 +1313,8 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <div class="container">
-    <div class="sections-wrapper">
+      <div class="section-divider"></div>
 
     <!-- ══════ From install to project — animated tutorial ══════ -->
     <div class="section-card reveal" id="tutorial">
