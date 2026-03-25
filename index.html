@@ -54,18 +54,20 @@
         radial-gradient(circle 360px at 108% 10%, rgba(34,211,238,0.06), transparent),
         radial-gradient(circle 400px at 28% 118%, rgba(52,211,153,0.06), transparent);
     }
-    html.light .section-card {
+    html.light .sections-wrapper {
       background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(248,248,252,0.88) 60%, rgba(235,240,250,0.4));
       box-shadow: 0 24px 80px -48px rgba(0,0,0,0.08);
     }
+    html.light .sections-wrapper::before { opacity: 0.35; }
     html.light .quick-install {
       background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(248,248,252,0.88));
       box-shadow: 0 24px 80px -48px rgba(0,0,0,0.08);
     }
-    html.light .feature-cards {
+    html.light .feature-card {
       background: rgba(255,255,255,0.8);
       box-shadow: 0 8px 32px -16px rgba(0,0,0,0.08);
     }
+    html.light .feature-card:hover { box-shadow: 0 16px 48px -20px rgba(0,0,0,0.12); }
     html.light .method-card,
     html.light .download-card {
       background: rgba(255,255,255,0.7);
@@ -148,10 +150,7 @@
     html.light code {
       background: rgba(235,238,242,0.9);
     }
-    html.light .section-card.glow-sky::before,
-    html.light .section-card.glow-emerald::before,
-    html.light .section-card.glow-violet::before,
-    html.light .section-card.glow-cyan::before { opacity: 0.35; }
+
     html.light .quick-install::before { opacity: 0.4; }
     html.light .copy-btn { border-color: var(--border); color: var(--muted); }
     html.light .copy-btn:hover { color: var(--text); }
@@ -457,24 +456,22 @@
     .btn-outline:hover { border-color: var(--muted); background: rgba(24,24,28,0.8); }
     .btn svg { width: 16px; height: 16px; }
 
-    /* Feature cards — unified card */
-    .feature-cards {
+    /* Feature cards */
+    .feature-cards { display: grid; gap: 12px; }
+    @media (min-width: 768px) { .feature-cards { grid-template-columns: repeat(3,1fr); } }
+    .feature-card {
       border-radius: var(--radius);
       border: 1px solid var(--border);
       background: var(--card);
+      padding: 22px;
       backdrop-filter: blur(12px);
       box-shadow: 0 18px 60px -42px rgba(15,23,42,0.4);
-      overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s cubic-bezier(0.16,1,0.3,1), box-shadow 0.25s;
     }
-    @media (min-width: 768px) { .feature-cards { display: grid; grid-template-columns: repeat(3,1fr); } }
-    .feature-card {
-      padding: 22px;
-    }
-    @media (max-width: 767px) {
-      .feature-card + .feature-card { border-top: 1px solid var(--border); }
-    }
-    @media (min-width: 768px) {
-      .feature-card + .feature-card { border-left: 1px solid var(--border); }
+    .feature-card:hover {
+      border-color: rgba(56,189,248,0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 24px 72px -36px rgba(15,23,42,0.5);
     }
     .feature-card .fc-icon {
       width: 40px; height: 40px;
@@ -588,38 +585,39 @@
     .cs-flow-item .status-running { color: var(--amber); }
     .cs-flow-item .status-queued  { color: #64748b; }
 
-    /* ── Section cards (unified themed containers) ─ */
-    .section-card {
+    /* ── Sections wrapper (single unified card) ─── */
+    .sections-wrapper {
       border-radius: 2rem;
       border: 1px solid var(--border);
       background: linear-gradient(135deg, rgba(9,9,11,0.92), rgba(15,15,20,0.85) 60%, rgba(38,38,42,0.25));
       backdrop-filter: blur(20px);
-      padding: 48px;
-      margin-bottom: 32px;
       box-shadow: 0 24px 80px -48px rgba(2,6,23,0.6);
       position: relative;
       overflow: hidden;
+      margin-bottom: 32px;
     }
-    .section-card::before {
+    .sections-wrapper::before {
       content: '';
       position: absolute;
       inset: 0;
       pointer-events: none;
       opacity: 0.5;
+      background:
+        radial-gradient(ellipse 400px 300px at 90% -10%, rgba(56,189,248,0.08), transparent),
+        radial-gradient(ellipse 400px 300px at 10% 110%, rgba(52,211,153,0.08), transparent);
+    }
+
+    /* ── Section cards (inside unified wrapper) ─ */
+    .section-card {
+      padding: 48px;
+      position: relative;
+    }
+    .section-card + .section-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 48px;
     }
     .section-card > * { position: relative; }
-    .section-card.glow-sky::before {
-      background: radial-gradient(ellipse 400px 300px at 90% -10%, rgba(56,189,248,0.08), transparent);
-    }
-    .section-card.glow-emerald::before {
-      background: radial-gradient(ellipse 400px 300px at 10% 110%, rgba(52,211,153,0.08), transparent);
-    }
-    .section-card.glow-violet::before {
-      background: radial-gradient(ellipse 400px 300px at 50% -20%, rgba(139,92,246,0.08), transparent);
-    }
-    .section-card.glow-cyan::before {
-      background: radial-gradient(ellipse 400px 300px at 80% 100%, rgba(34,211,238,0.08), transparent);
-    }
     .section-card h2 {
       font-size: 1.6rem;
       font-weight: 600;
@@ -1136,6 +1134,7 @@
       .hero-desc { font-size: 0.95rem; }
       .hero-grid { padding: 28px; }
       .section-card { padding: 28px; }
+      .section-card + .section-divider { margin: 0 28px; }
       .quick-install { padding: 28px 20px; }
       .downloads-grid, .method-grid { grid-template-columns: 1fr; }
       .tutorial { gap: 24px; }
@@ -1341,9 +1340,10 @@
   </div>
 
   <div class="container">
+    <div class="sections-wrapper">
 
     <!-- ══════ From install to project — animated tutorial ══════ -->
-    <div class="section-card glow-sky reveal" id="tutorial">
+    <div class="section-card reveal" id="tutorial">
       <h2>From install to project</h2>
       <p class="section-sub">From first install to a running project in six steps.</p>
       <div class="tutorial">
@@ -1550,8 +1550,10 @@
 
 
 
+    <div class="section-divider"></div>
+
     <!-- ══════ Downloads ══════ -->
-    <div class="section-card glow-emerald reveal" id="downloads">
+    <div class="section-card reveal" id="downloads">
       <h2>Available everywhere</h2>
       <p class="section-sub">Desktop, mobile, and CLI — grab the latest from GitHub Releases.</p>
       <div class="platform-icons reveal-stagger" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:20px;justify-content:center">
@@ -1578,7 +1580,7 @@
       </div>
     </div>
 
-
+    </div><!-- /sections-wrapper -->
   </div>
 
   <footer>
