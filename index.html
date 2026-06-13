@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jait — Just Another Intelligent Tool</title>
-  <meta name="description" content="An agent workspace that looks and behaves like an actual toolchain. Local-first AI with terminal, filesystem, browser control, and automation." />
+  <meta name="description" content="Jait is a local-first AI agent workspace with CLI providers, terminal and file tools, previews, browser control, scheduled jobs, memory, swarm threads, remote nodes, and WhatsApp channels." />
   <link rel="icon" type="image/svg+xml" href="/icon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -245,6 +245,38 @@
     html.light .prov-pill {
       background: rgba(255,255,255,0.6);
       box-shadow: 0 2px 8px -4px rgba(0,0,0,0.06);
+    }
+    .release-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      max-width: 560px;
+      margin: 0 0 22px;
+    }
+    .stat-tile {
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      background: rgba(9,9,11,0.5);
+      padding: 12px 14px;
+      backdrop-filter: blur(8px);
+    }
+    .stat-tile strong {
+      display: block;
+      font-size: 1.15rem;
+      line-height: 1.1;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .stat-tile span {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.72rem;
+      line-height: 1.35;
+      color: var(--muted);
+    }
+    html.light .stat-tile {
+      background: rgba(255,255,255,0.72);
+      box-shadow: 0 4px 18px -12px rgba(0,0,0,0.1);
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -1151,8 +1183,23 @@
             </div>
           </div>
 
-          <h1 class="hero-tagline">An agent workspace that looks and behaves like an actual toolchain.</h1>
-          <p class="hero-desc">Jait combines chat, terminals, file editing, browser control, screen sharing, and automation threads in one local-first surface.</p>
+          <h1 class="hero-tagline">Your local AI agent workspace grew up fast.</h1>
+          <p class="hero-desc">Jait now combines CLI providers, swarm threads, mobile controls, preview/browser tooling, scheduled jobs, memory, and guarded terminal execution in one self-hosted gateway.</p>
+
+          <div class="release-stats">
+            <div class="stat-tile">
+              <strong>v0.1.496</strong>
+              <span>latest gateway release</span>
+            </div>
+            <div class="stat-tile">
+              <strong>980+</strong>
+              <span>commits in 3 months</span>
+            </div>
+            <div class="stat-tile">
+              <strong>220k+</strong>
+              <span>lines added recently</span>
+            </div>
+          </div>
 
           <div class="providers-strip">
             <span class="prov-label">Supports</span>
@@ -1166,22 +1213,22 @@
             </span>
             <span class="prov-pill" style="--i:2">
               <svg viewBox="0 0 24 24" fill="currentColor" style="color:#4285f4"><path d="M12 0c0 6.627-5.373 12-12 12 6.627 0 12 5.373 12 12 0-6.627 5.373-12 12-12-6.627 0-12-5.373-12-12z"/></svg>
-              Gemini CLI <span class="prov-badge soon">Soon</span>
+              Gemini CLI <span class="prov-badge live">Live</span>
             </span>
             <span class="prov-pill" style="--i:3">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-              OpenCode <span class="prov-badge soon">Soon</span>
+              OpenCode <span class="prov-badge live">Live</span>
             </span>
             <span class="prov-pill" style="--i:4">
               <svg viewBox="0 0 24 24" fill="currentColor" style="color:#9a77db"><path d="M9.11 8.18a.75.75 0 0 1 1.06-.02l.82.78.82-.78a.75.75 0 1 1 1.03 1.09l-1.1 1.04 1.1 1.04a.75.75 0 0 1-1.03 1.09l-.82-.78-.82.78a.75.75 0 0 1-1.03-1.09l1.1-1.04-1.1-1.04a.75.75 0 0 1-.03-1.07Z"/><path d="M12 1C6.2 1 2.48 4.36 1.28 8.42a3.7 3.7 0 0 0-.3 1.75 3.55 3.55 0 0 0-.45 1.87c.06.86.49 1.6 1.1 2.13A3.49 3.49 0 0 0 2.4 16c.58 1.57 1.83 3 3.6 3h1v-1.5H5.98c-1.2 0-2.12-1-2.58-2.22a2 2 0 0 1-.53-1.21 1.99 1.99 0 0 1 .33-1.34.75.75 0 0 0 .15-.55c-.05-.49.06-.98.2-1.42C4.22 8.06 6.96 5.5 9.86 4.59a10 10 0 0 1 4.28 0c2.9.91 5.64 3.47 6.31 6.27.14.44.25.93.2 1.42a.75.75 0 0 0 .15.55c.22.37.35.83.33 1.34a2 2 0 0 1-.53 1.21c-.46 1.22-1.38 2.22-2.58 2.22H17V19h1c1.77 0 3.02-1.43 3.6-3a3.49 3.49 0 0 0 .77-1.83c.61-.53 1.04-1.27 1.1-2.13.06-.68-.12-1.32-.44-1.87a3.7 3.7 0 0 0-.31-1.75C21.52 4.36 17.8 1 12 1ZM8.5 15.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm8-1a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/></svg>
-              Copilot CLI <span class="prov-badge soon">Soon</span>
+              Copilot CLI <span class="prov-badge live">Live</span>
             </span>
             <span class="prov-pill byom" style="--i:5;border-style:dashed">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
               Any model
             </span>
           </div>
-          <p class="byom-note">Any model with the Jait infrastructure — bring your own local model via Ollama or LM Studio, connect any OpenAI-compatible endpoint, or use your existing trusted CLI providers.</p>
+          <p class="byom-note">Use Codex, Claude Code, Gemini, OpenCode, Copilot, Ollama, LM Studio, or any OpenAI-compatible endpoint while Jait keeps tools, previews, files, and prompts in one workspace.</p>
 
           <div class="caps">
             <span class="cap">
@@ -1194,11 +1241,11 @@
             </span>
             <span class="cap">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-              Strategy + planning
+              Todo + memory workflows
             </span>
             <span class="cap">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-              Code workspace + diffs
+              Swarm agents + diffs
             </span>
           </div>
 
@@ -1218,22 +1265,22 @@
               <div class="fc-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
               </div>
-              <h3>Agent, terminal, and files in one loop</h3>
-              <p>Run commands, inspect repos, patch code, and keep the working context visible instead of hidden behind chat.</p>
+              <h3>Guarded tools that can actually work</h3>
+              <p>Run terminals, node tools, file edits, SSH prompts, previews, and browser sessions with approval where it matters.</p>
             </div>
             <div class="feature-card">
               <div class="fc-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
               </div>
-              <h3>Workspace-native editing</h3>
-              <p>Open real files, review diffs, and keep source control close to the conversation while the agent works.</p>
+              <h3>Parallel agent threads</h3>
+              <p>Manager and swarm modes split work across background threads while preserving repos, change counts, and task history.</p>
             </div>
             <div class="feature-card">
               <div class="fc-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16.1A5 5 0 0 1 5.9 20M2 12.05A9 9 0 0 1 9.95 20M2 8V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6"/><line x1="2" y1="20" x2="2.01" y2="20"/></svg>
               </div>
-              <h3>Browser and device reach</h3>
-              <p>Bridge screen share, browser control, and network-aware tools from the same interface when the task needs it.</p>
+              <h3>Reach it from anywhere</h3>
+              <p>Polished web, desktop, and mobile clients, plus WhatsApp channel replies and remote node deploys that link other machines as filesystem nodes.</p>
             </div>
           </div>
         </div>
@@ -1265,7 +1312,7 @@
               </span>
               <span class="jait-tool-btn">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-                Workspace
+                Project
               </span>
             </div>
             <div class="jait-chat" style="min-height:0;padding:14px 16px;gap:10px">
@@ -1318,8 +1365,8 @@
 
     <!-- ══════ From install to project — animated tutorial ══════ -->
     <div class="section-card reveal" id="tutorial">
-      <h2>From install to project</h2>
-      <p class="section-sub">From first install to a running project in six steps.</p>
+      <h2>From local gateway to real agent work</h2>
+      <p class="section-sub">Install the gateway, connect from any browser, pick a provider, and let Jait coordinate tools, threads, and previews.</p>
       <div class="tutorial">
         <div class="tut-steps" id="tutSteps">
           <div class="tut-step active" data-step="0">
@@ -1334,23 +1381,23 @@
             <div class="tut-num">2</div>
             <div class="tut-info">
               <h4>Start the server</h4>
-              <p>The gateway boots up, loads tools, and waits for connections.</p>
+              <p>The gateway boots with auth, tools, scheduler, memory, and preview support.</p>
             </div>
             <div class="tut-progress"><div class="tut-progress-bar"></div></div>
           </div>
           <div class="tut-step" data-step="2">
             <div class="tut-num">3</div>
             <div class="tut-info">
-              <h4>Set gateway URL</h4>
-              <p>Open Jait and enter the URL of your running gateway.</p>
+              <h4>Connect from anywhere</h4>
+              <p>Open Jait from desktop, mobile, or another browser on your network.</p>
             </div>
             <div class="tut-progress"><div class="tut-progress-bar"></div></div>
           </div>
           <div class="tut-step" data-step="3">
             <div class="tut-num">4</div>
             <div class="tut-info">
-              <h4>Login or register</h4>
-              <p>Create an account on your gateway or log in with existing credentials.</p>
+              <h4>Choose a provider</h4>
+              <p>Use API keys, local models, or trusted CLI providers from the same project.</p>
             </div>
             <div class="tut-progress"><div class="tut-progress-bar"></div></div>
           </div>
@@ -1358,15 +1405,15 @@
             <div class="tut-num">5</div>
             <div class="tut-info">
               <h4>Describe your project</h4>
-              <p>Tell the agent what to build — it handles scaffolding, deps, and config.</p>
+              <p>Tell the agent what to build; it handles tools, files, previews, and tests.</p>
             </div>
             <div class="tut-progress"><div class="tut-progress-bar"></div></div>
           </div>
           <div class="tut-step" data-step="5">
             <div class="tut-num">6</div>
             <div class="tut-info">
-              <h4>Project ready</h4>
-              <p>Files created, dependencies installed, tests passing.</p>
+              <h4>Coordinate follow-ups</h4>
+              <p>Review diffs, schedule jobs, delegate threads, and keep iterating.</p>
             </div>
             <div class="tut-progress"><div class="tut-progress-bar"></div></div>
           </div>
@@ -1379,13 +1426,13 @@
               <span class="jait-nav-btn active">Chat</span>
               <span class="jait-nav-btn">Jobs</span>
             </div>
-            <div class="jait-model-pill"><span class="dot"></span> claude-4-sonnet</div>
+            <div class="jait-model-pill"><span class="dot"></span> codex</div>
           </div>
           <div class="jait-toolbar">
             <span class="jait-tool-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg> Sessions</span>
             <span class="jait-tool-btn active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> Terminal</span>
             <span class="jait-tool-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/></svg> Preview</span>
-            <span class="jait-tool-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg> Workspace</span>
+            <span class="jait-tool-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg> Project</span>
           </div>
           <div class="jait-body" id="tutScreen">
             <!-- Scene 0: Install -->
@@ -1403,16 +1450,16 @@
             <!-- Scene 1: Launch -->
             <div class="jait-scene" data-scene="1">
               <div class="jait-term">
-                <div class="prompt">$ jait</div>
+                <div class="prompt">$ jait start</div>
                 <div class="output"></div>
                 <div class="box" style="text-align:center">
-                  <span class="accent" style="font-weight:600">Jait Gateway</span> <span class="dim">v0.1.207</span><br>
+                  <span class="accent" style="font-weight:600">Jait Gateway</span> <span class="dim">v0.1.496</span><br>
                   <span class="dim">http://localhost:</span><span class="accent">8000</span>
                 </div>
                 <div class="output"></div>
                 <div class="success">✓ Database ready</div>
-                <div class="success">✓ 61 tools loaded</div>
-                <div class="success">✓ Scheduler started</div>
+                <div class="success">✓ Tool surfaces loaded</div>
+                <div class="success">✓ Scheduler and memory started</div>
                 <div class="output"></div>
                 <div class="dim">Waiting for connections...</div>
               </div>
@@ -1423,7 +1470,7 @@
               <div class="jait-dialog-wrap">
                 <div class="jait-dialog">
                   <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg> Connect to Gateway</h3>
-                  <p>Enter your Jait gateway URL to get started.</p>
+                  <p>Use localhost or a network URL from any browser.</p>
                   <label>Gateway URL</label>
                   <input type="text" value="http://localhost:8000" readonly />
                   <div class="status-ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Gateway reachable</div>
@@ -1436,17 +1483,17 @@
             <div class="jait-scene" data-scene="3">
               <div class="jait-dialog-wrap">
                 <div class="jait-dialog">
-                  <h3>Account</h3>
+                  <h3>Provider</h3>
                   <p style="display:flex;align-items:center;gap:6px"><svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px;min-width:12px"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg> <code style="font-size:0.68rem;background:rgba(255,255,255,0.06);border-radius:4px;padding:1px 6px">localhost:8000</code></p>
                   <div class="jait-tabs">
-                    <span class="active">Login</span>
-                    <span>Register</span>
+                    <span class="active">Codex</span>
+                    <span>Local</span>
                   </div>
-                  <label>Username</label>
-                  <input type="text" value="you" readonly />
-                  <label>Password</label>
-                  <input type="password" value="••••••••" readonly />
-                  <div class="btn-dialog">Login</div>
+                  <label>Provider</label>
+                  <input type="text" value="OpenAI Codex CLI" readonly />
+                  <label>Model</label>
+                  <input type="text" value="gpt-5.5" readonly />
+                  <div class="btn-dialog">Use provider</div>
                 </div>
               </div>
             </div>
@@ -1461,10 +1508,10 @@
                 <div class="jait-msg">
                   <div class="jait-msg-avatar agent">J</div>
                   <div class="jait-msg-body">
-                    <p>I'll scaffold the project and set up auth and database.</p>
+                    <p>I'll scaffold the project, run tools, and open a preview.</p>
                     <div class="jait-tool-call">
                       <div class="tc-icon terminal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div>
-                      <span class="tc-text">mkdir -p src/{routes,middleware,db}</span>
+                      <span class="tc-text">jait.todo update plan</span>
                       <span class="tc-status"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
                     </div>
                     <div class="jait-tool-call">
@@ -1479,7 +1526,7 @@
                     </div>
                     <div class="jait-tool-call">
                       <div class="tc-icon terminal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div>
-                      <span class="tc-text">npm install express jsonwebtoken better-sqlite3</span>
+                      <span class="tc-text">preview.open http://localhost:3000</span>
                       <span class="tc-status"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
                     </div>
                   </div>
@@ -1507,7 +1554,7 @@
                 </div>
                 <div class="jait-success-bar">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                  All 12 tests passing — project ready to go
+                  Diffs reviewed, preview checked, follow-up jobs ready
                 </div>
               </div>
               <div class="jait-terminal-panel">
@@ -1529,7 +1576,7 @@
     <!-- ══════ Downloads ══════ -->
     <div class="section-card reveal" id="downloads">
       <h2>Available everywhere</h2>
-      <p class="section-sub">Desktop, mobile, and CLI — grab the latest from GitHub Releases.</p>
+      <p class="section-sub">Desktop, mobile, and CLI - grab the latest gateway and app builds from GitHub Releases or npm.</p>
       <div class="platform-icons reveal-stagger" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:20px;justify-content:center">
         <a href="https://github.com/Widev-e-U/Jait/releases" class="platform-link reveal" style="--i:0" title="Windows">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg>
@@ -1559,7 +1606,7 @@
 
   <footer>
     <div class="container">
-      <p>Jait &mdash; Just Another Intelligent Tool &middot; <a href="https://github.com/Widev-e-U/Jait">GitHub</a> &middot; <a href="https://discord.gg/XaHA8fnB">Discord</a> &middot; <a href="https://github.com/Widev-e-U/Jait/blob/main/LICENSE">MIT License</a> &middot; <a href="https://widev.at">Impressum</a></p>
+      <p>Jait &mdash; Just Another Intelligent Tool &middot; <a href="https://github.com/Widev-e-U/Jait">GitHub</a> &middot; <a href="https://discord.gg/aqVPr2Jb">Discord</a> &middot; <a href="https://github.com/Widev-e-U/Jait/blob/main/LICENSE">MIT License</a> &middot; <a href="https://widev.at">Impressum</a></p>
     </div>
   </footer>
 
