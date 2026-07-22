@@ -548,7 +548,18 @@
     .product-gallery strong {
       color: var(--text);
     }
-    #tutorial .tutorial { display: none; }
+    #tutorial { display: none; }
+    .hero-editor-shot {
+      margin: 24px 0 32px;
+    }
+    .hero-editor-shot figure {
+      margin: 0;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: #0c0e12;
+      box-shadow: 0 30px 100px -40px rgba(0,0,0,0.9);
+    }
     .cs-panel {
       position: relative;
       display: flex; flex-direction: column;
@@ -1251,6 +1262,13 @@
 
           <h1 class="hero-tagline">Your local AI agent workspace grew up fast.</h1>
           <p class="hero-desc">Jait now combines CLI providers, swarm threads, mobile controls, preview/browser tooling, scheduled jobs, memory, and guarded terminal execution in one self-hosted gateway.</p>
+
+          <div class="hero-editor-shot">
+            <figure>
+              <img class="editor-shot editor-shot-dark" src="assets/jait-editor-light.png" alt="Jait logged in with a project open in editor mode, dark theme" width="1279" height="719">
+              <img class="editor-shot editor-shot-light" src="assets/jait-editor-light.png" alt="Jait logged in with a project open in editor mode, light theme" width="1279" height="719">
+            </figure>
+          </div>
 
           <div class="release-stats">
             <div class="stat-tile">
