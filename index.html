@@ -488,6 +488,67 @@
 
     /* ── Control surface (right column) ────────── */
     .control-surface { display: flex; min-width: 0; align-items: stretch; }
+    .product-shot {
+      width: 100%;
+      display: block;
+      border-radius: 16px;
+      border: 1px solid #262b35;
+      background: #0c0e12;
+      box-shadow: 0 30px 100px -40px rgba(0,0,0,0.9);
+    }
+    .control-surface > .jait-app { display: none; }
+    .product-shot-frame {
+      position: relative;
+      width: 100%;
+      align-self: center;
+    }
+    .product-shot-label {
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      padding: 6px 10px;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 999px;
+      background: rgba(9,9,11,0.82);
+      color: #d4d4d8;
+      font-size: 0.7rem;
+      font-weight: 600;
+      backdrop-filter: blur(12px);
+    }
+    .product-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 28px;
+    }
+    .product-gallery figure {
+      margin: 0;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: rgba(9,9,11,0.45);
+    }
+    .product-gallery figure:first-child { grid-column: 1 / -1; }
+    .product-gallery img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      object-position: top left;
+    }
+    .product-gallery figcaption {
+      padding: 14px 16px 16px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+    .product-gallery strong {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--text);
+      font-size: 0.9rem;
+    }
+    #tutorial .tutorial { display: none; }
     .cs-panel {
       position: relative;
       display: flex; flex-direction: column;
@@ -1152,6 +1213,8 @@
       .downloads-grid, .method-grid { grid-template-columns: 1fr; }
       .tutorial { gap: 24px; }
       .jait-app { min-height: 360px; }
+      .product-gallery { grid-template-columns: 1fr; }
+      .product-gallery figure:first-child { grid-column: auto; }
     }
   </style>
 </head>
@@ -1291,6 +1354,10 @@
 
         <!-- Right column — Jait app preview -->
         <div class="control-surface">
+          <div class="product-shot-frame">
+            <img class="product-shot" src="assets/jait-preview.png" alt="Jait's real agent workspace with chat, tools, and project controls" width="1280" height="720" fetchpriority="high">
+            <span class="product-shot-label">Actual Jait interface</span>
+          </div>
           <div class="jait-app" style="min-height:0">
             <div class="jait-header">
               <div class="jait-logo">
@@ -1369,8 +1436,22 @@
 
     <!-- ══════ From install to project — animated tutorial ══════ -->
     <div class="section-card reveal" id="tutorial">
-      <h2>From local gateway to real agent work</h2>
-      <p class="section-sub">Install the gateway, connect from any browser, pick a provider, and let Jait coordinate tools, threads, and previews.</p>
+      <h2>See Jait in action</h2>
+      <p class="section-sub">Real captures from the current app: agent work, live previews, and browser tooling in the same local workspace.</p>
+      <div class="product-gallery">
+        <figure>
+          <img src="assets/jait-preview-workspace.png" alt="Jait workspace showing an active project preview" width="1440" height="960" loading="lazy">
+          <figcaption><strong>One connected workspace</strong>Keep the conversation, project context, and live preview together while the agent works.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/jait-preview.png" alt="Jait chat workspace with tool activity" width="1280" height="720" loading="lazy">
+          <figcaption><strong>Agent work you can follow</strong>See the provider, tool activity, approvals, and project state without dropping into a separate console.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/jait-browser-tools.png" alt="Jait browser tooling running inside the workspace" width="1279" height="719" loading="lazy">
+          <figcaption><strong>Browser and preview tools built in</strong>Inspect and operate a real browser session from the same interface.</figcaption>
+        </figure>
+      </div>
       <div class="tutorial">
         <div class="tut-steps" id="tutSteps">
           <div class="tut-step active" data-step="0">
