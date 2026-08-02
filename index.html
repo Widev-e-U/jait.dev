@@ -534,9 +534,7 @@
       display: block;
     }
     .editor-shot-light { display: none; }
-    .editor-shot-dark {
-      filter: invert(0.9) hue-rotate(180deg) brightness(0.78) contrast(1.08) saturate(0.9);
-    }
+    .editor-shot-dark { filter: none; }
     html.light .editor-shot-light { display: block; }
     html.light .editor-shot-dark { display: none; }
     .product-gallery figcaption {
@@ -1265,8 +1263,8 @@
 
           <div class="hero-editor-shot">
             <figure>
-              <img class="editor-shot editor-shot-dark" src="assets/jait-editor-light.png" alt="Jait logged in with a project open in editor mode, dark theme" width="1279" height="719">
-              <img class="editor-shot editor-shot-light" src="assets/jait-editor-light.png" alt="Jait logged in with a project open in editor mode, light theme" width="1279" height="719">
+              <img class="editor-shot editor-shot-dark" src="assets/jait-editor-dark.png" alt="Jait logged in with a project open in editor mode, dark theme" width="1440" height="810">
+              <img class="editor-shot editor-shot-light" src="assets/jait-editor-light.png" alt="Jait logged in with a project open in editor mode, light theme" width="1440" height="810">
             </figure>
           </div>
 
@@ -1372,7 +1370,7 @@
         <!-- Right column — Jait app preview -->
         <div class="control-surface">
           <div class="product-shot-frame">
-            <img class="product-shot" src="assets/jait-editor-light.png" alt="Jait's real agent workspace with chat, tools, and project controls" width="1280" height="720" fetchpriority="high">
+            <img class="product-shot" src="assets/jait-editor-light.png" alt="Jait's real agent workspace with chat, tools, and project controls" width="1440" height="810" fetchpriority="high">
             <span class="product-shot-label">Actual Jait interface</span>
           </div>
           <div class="jait-app" style="min-height:0">
@@ -1457,8 +1455,8 @@
       <p class="section-sub">The complete logged-in workspace in editor mode. The screenshot follows your light or dark theme choice.</p>
       <div class="product-gallery">
         <figure>
-          <img class="editor-shot editor-shot-dark" src="assets/jait-editor-light.png" alt="Jait logged in with a project open in editor mode, dark theme" width="1279" height="719" loading="lazy">
-          <img class="editor-shot editor-shot-light" src="assets/jait-editor-light.png" alt="Jait logged in with a project open in editor mode, light theme" width="1279" height="719" loading="lazy">
+          <img class="editor-shot editor-shot-dark" src="assets/jait-editor-dark.png" alt="Jait logged in with a project open in editor mode, dark theme" width="1440" height="810" loading="lazy">
+          <img class="editor-shot editor-shot-light" src="assets/jait-editor-light.png" alt="Jait logged in with a project open in editor mode, light theme" width="1440" height="810" loading="lazy">
           <figcaption><strong>Project files, editor tools, architecture, preview, and agent chat in one workspace.</strong></figcaption>
         </figure>
       </div>
