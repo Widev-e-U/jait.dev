@@ -4,7 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jait — Just Another Intelligent Tool</title>
-  <meta name="description" content="Jait is a local-first AI agent workspace with CLI providers, terminal and file tools, previews, browser control, scheduled jobs, memory, swarm threads, remote nodes, and WhatsApp channels." />
+  <meta name="description" content="Jait is a free, MIT-licensed AI agent workspace you self-host. 64 built-in tools — real terminals, filesystem, browser control, live previews, memory, cron jobs, remote nodes — with your code staying on your own machine. Bring Codex, Claude Code, Gemini, Copilot, or a local model." />
+  <meta property="og:title" content="Jait — a local-first AI agent workspace" />
+  <meta property="og:description" content="Self-hosted AI coding agent with real terminals, browser control, live previews, memory, and scheduled jobs. Your code stays on your machine. MIT licensed." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jait.dev" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/svg+xml" href="/icon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -547,6 +552,8 @@
       color: var(--text);
     }
     #tutorial { display: none; }
+    /* the tutorial block is hidden, so drop the divider that would double up after it */
+    #tutorial + .section-divider { display: none; }
     .hero-editor-shot {
       margin: 24px 0 32px;
     }
@@ -766,6 +773,149 @@
       color: var(--emerald);
       transform: scale(1.1);
     }
+
+    /* ── Capability catalogue ─────────────────── */
+    .cap-groups {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    }
+    .cap-group {
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      background: rgba(9,9,11,0.45);
+      padding: 20px 22px;
+      backdrop-filter: blur(8px);
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    }
+    .cap-group:hover { border-color: rgba(56,189,248,0.28); transform: translateY(-2px); }
+    .cap-group h3 {
+      display: flex; align-items: center; gap: 10px;
+      margin: 0 0 8px; font-size: 1rem; font-weight: 600;
+    }
+    .cap-group h3 svg { width: 18px; height: 18px; color: var(--sky); flex-shrink: 0; }
+    .cap-group p { font-size: 0.86rem; line-height: 1.55; margin-bottom: 12px; }
+    .cap-tools { display: flex; flex-wrap: wrap; gap: 6px; }
+    .cap-tools code {
+      font-size: 0.68rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(2,6,23,0.6);
+      color: var(--muted);
+      border-color: var(--border);
+    }
+    html.light .cap-group { background: rgba(255,255,255,0.72); box-shadow: 0 6px 24px -16px rgba(0,0,0,0.08); }
+    html.light .cap-tools code { background: rgba(240,243,247,0.95); }
+
+    /* ── How it works flow ────────────────────── */
+    .flow {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    }
+    .flow-step {
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      padding: 18px 20px;
+      background: rgba(9,9,11,0.45);
+    }
+    .flow-step .flow-num {
+      font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--sky); font-weight: 600;
+    }
+    .flow-step h4 { margin: 8px 0 6px; font-size: 0.98rem; font-weight: 600; }
+    .flow-step p { font-size: 0.85rem; margin: 0; line-height: 1.55; }
+    html.light .flow-step { background: rgba(255,255,255,0.72); }
+
+    /* ── Why / differentiators ────────────────── */
+    .why-list {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    }
+    .why-item {
+      display: flex; gap: 13px; align-items: flex-start;
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      padding: 18px 20px;
+      background: rgba(9,9,11,0.4);
+    }
+    .why-item .why-ico {
+      width: 34px; height: 34px; flex-shrink: 0;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(2,6,23,0.55);
+    }
+    .why-item .why-ico svg { width: 17px; height: 17px; color: var(--emerald); }
+    .why-item h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 5px; }
+    .why-item p { font-size: 0.85rem; margin: 0; line-height: 1.55; }
+    html.light .why-item { background: rgba(255,255,255,0.72); }
+    html.light .why-item .why-ico { background: rgba(245,247,250,0.95); }
+
+    /* ── Use cases ────────────────────────────── */
+    .usecases {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    }
+    .usecase {
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      padding: 20px;
+      background: rgba(9,9,11,0.45);
+    }
+    .usecase .uc-tag {
+      display: inline-block;
+      font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.12em;
+      font-weight: 600; color: var(--cyan); margin-bottom: 10px;
+    }
+    .usecase .uc-quote {
+      font-size: 0.92rem; color: var(--text); font-weight: 500;
+      margin-bottom: 8px; line-height: 1.5;
+    }
+    .usecase p { font-size: 0.85rem; margin: 0; line-height: 1.55; }
+    html.light .usecase { background: rgba(255,255,255,0.72); }
+
+    /* ── Honest status callout ────────────────── */
+    .status-note {
+      display: flex; gap: 14px; align-items: flex-start;
+      border: 1px solid rgba(251,191,36,0.28);
+      border-radius: 1.25rem;
+      background: rgba(251,191,36,0.06);
+      padding: 18px 22px;
+      margin-top: 24px;
+    }
+    .status-note svg { width: 20px; height: 20px; color: var(--amber); flex-shrink: 0; margin-top: 3px; }
+    .status-note p { margin: 0; font-size: 0.89rem; line-height: 1.6; }
+    .status-note strong { color: var(--text); }
+
+    /* ── FAQ ──────────────────────────────────── */
+    .faq { display: grid; gap: 10px; }
+    .faq details {
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      background: rgba(9,9,11,0.4);
+      overflow: hidden;
+    }
+    .faq summary {
+      cursor: pointer;
+      padding: 15px 20px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      list-style: none;
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after {
+      content: '+';
+      color: var(--muted);
+      font-size: 1.2rem; line-height: 1;
+      transition: transform 0.2s;
+    }
+    .faq details[open] summary::after { transform: rotate(45deg); }
+    .faq details p { padding: 0 20px 16px; margin: 0; font-size: 0.88rem; line-height: 1.65; }
+    html.light .faq details { background: rgba(255,255,255,0.72); }
 
     /* ── Theme toggle ────────────────────────── */
     .theme-toggle {
@@ -1258,8 +1408,9 @@
             </div>
           </div>
 
-          <h1 class="hero-tagline">Your local AI agent workspace grew up fast.</h1>
-          <p class="hero-desc">Jait now combines CLI providers, swarm threads, mobile controls, preview/browser tooling, scheduled jobs, memory, and guarded terminal execution in one self-hosted gateway.</p>
+          <h1 class="hero-tagline">An AI agent workspace that runs on your machine.</h1>
+          <p class="hero-desc">Jait is one small gateway you install yourself. It gives an agent real terminals, your filesystem, a controllable browser, live previews, memory, and scheduled jobs — then lets you reach all of it from your laptop, your server, or your phone. Your code never leaves your disk, and you bring whichever model you already pay for.</p>
+          <p class="hero-desc" style="font-size:0.92rem"><a href="#capabilities">See everything it can do →</a></p>
 
           <div class="hero-editor-shot">
             <figure>
@@ -1270,12 +1421,12 @@
 
           <div class="release-stats">
             <div class="stat-tile">
-              <strong>980+</strong>
-              <span>commits in 3 months</span>
+              <strong>64</strong>
+              <span>built-in agent tools</span>
             </div>
             <div class="stat-tile">
-              <strong>220k+</strong>
-              <span>lines added recently</span>
+              <strong>650+</strong>
+              <span>releases shipped</span>
             </div>
             <div class="stat-tile">
               <strong>100%</strong>
@@ -1666,11 +1817,287 @@
 
     <div class="section-divider"></div>
 
+    <!-- ══════ Capability catalogue ══════ -->
+    <div class="section-card reveal" id="capabilities">
+      <h2>What Jait can actually do today</h2>
+      <p class="section-sub">Not a roadmap — this is the tool surface shipping in v0.1.708. The agent picks from <strong>64 built-in tools</strong>, and every one of them runs on your machine.</p>
+
+      <div class="cap-groups reveal-stagger">
+        <div class="cap-group reveal" style="--i:0">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Code, files &amp; repos</h3>
+          <p>Read, write, and patch files with backup and restore. A code-graph index answers "what calls this?" across large repos, ranked search spans the gateway and any attached machines, and it can generate architecture diagrams from the code itself.</p>
+          <div class="cap-tools"><code>file.read</code><code>file.write</code><code>file.patch</code><code>codegraph.query</code><code>architecture.generate</code></div>
+        </div>
+
+        <div class="cap-group reveal" style="--i:1">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> Real terminal execution</h3>
+          <p>Full PTY terminals, not a sandboxed echo. The agent runs builds and tests, streams output live, and can target a specific terminal you point it at. Elevated commands and installs ask first.</p>
+          <div class="cap-tools"><code>jait.terminal</code><code>terminal.run</code><code>terminal.stream</code><code>elevated.run</code><code>os.install</code></div>
+        </div>
+
+        <div class="cap-group reveal" style="--i:2">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Browser control</h3>
+          <p>A Playwright-driven browser the agent can actually use — navigate, click, type, scroll, pick from dropdowns, and read structured page snapshots instead of guessing. There's a sandboxed Chromium container with noVNC when you want it fully isolated.</p>
+          <div class="cap-tools"><code>browser.navigate</code><code>browser.click</code><code>browser.type</code><code>browser.snapshot</code><code>browser.screenshot</code></div>
+        </div>
+
+        <div class="cap-group reveal" style="--i:3">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Live preview</h3>
+          <p>One call boots your project, proxies the localhost port into the workspace, and hands back a controllable browser session. The agent can click through the app it just changed, read the preview's logs, and restart it — so "does it actually work?" gets answered before you look.</p>
+          <div class="cap-tools"><code>preview.open</code><code>preview.inspect</code><code>preview.logs</code><code>preview.restart</code></div>
+        </div>
+
+        <div class="cap-group reveal" style="--i:4">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Agent orchestration</h3>
+          <p>Four modes: Developer for hands-on work, Manager to delegate, Swarm to fan out, Thread for focused side-runs. Sub-agents stream inline, share a todo list, and message each other. Loop backstops and duplicate-call quarantine stop runaway runs.</p>
+          <div class="cap-tools"><code>agent.spawn</code><code>agent.message</code><code>thread.control</code><code>jait.todos</code></div>
+        </div>
+
+        <div class="cap-group reveal" style="--i:5">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.22-8.56"/><polyline points="21 3 21 9 15 9"/></svg> Memory &amp; continuity</h3>
+          <p>Durable memories survive across sessions and projects, and the agent can search everything you've said before or pull the exact trace of an old chat. Drop durable instructions in <code>~/.jait/SOUL.md</code> and every provider picks them up.</p>
+          <div class="cap-tools"><code>memory.save</code><code>memory.search</code><code>session.search</code><code>chat.traces</code></div>
+        </div>
+
+        <div class="cap-group reveal" style="--i:6">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Jobs, cron &amp; channels</h3>
+          <p>Schedule agents to run on a cron. Have them message you when something finishes or breaks — including through the WhatsApp and Telegram channel assistants, so a long job can reach you when you're nowhere near the machine.</p>
+          <div class="cap-tools"><code>cron.add</code><code>cron.update</code><code>channel.send</code><code>channel.remind</code></div>
+        </div>
+
+        <div class="cap-group reveal" style="--i:7">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg> Machines &amp; remote nodes</h3>
+          <p>Attach another machine as a filesystem node and work across both from one chat. Scan your network, SSH into boxes, share or record your screen for visual context, and let the agent speak results out loud.</p>
+          <div class="cap-tools"><code>network.scan</code><code>ssh.run</code><code>screen.share</code><code>surfaces.list</code><code>voice.speak</code></div>
+        </div>
+
+        <div class="cap-group reveal" style="--i:8">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Research on the web</h3>
+          <p>Search and fetch pages through whichever backend you configure — Brave, Perplexity, xAI Grok, Gemini, or Moonshot — and hand images straight to a vision model when the answer is in a screenshot.</p>
+          <div class="cap-tools"><code>web.search</code><code>web.fetch</code><code>image.view</code></div>
+        </div>
+
+        <div class="cap-group reveal" style="--i:9">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> Extend it</h3>
+          <p>A real MCP SDK bridge pulls in any MCP server you already run, over HTTP or stdio. Skills package repeatable workflows, extensions add integrations, and tool discovery keeps the prompt small by loading schemas only when needed.</p>
+          <div class="cap-tools"><code>MCP bridge</code><code>skills.manage</code><code>extensions.manage</code><code>tools.search</code></div>
+        </div>
+
+        <div class="cap-group reveal" style="--i:10">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v12"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg> Pull requests &amp; Git</h3>
+          <p>Open, inspect, and resolve PRs from the workspace, including merge-conflict inspection and resolution. Every GitHub operation is bound to <em>your</em> encrypted token — never a shared gateway credential.</p>
+          <div class="cap-tools"><code>PR review</code><code>conflict resolution</code><code>worktrees</code><code>source control</code></div>
+        </div>
+
+        <div class="cap-group reveal" style="--i:11">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Consent where it counts</h3>
+          <p>Destructive and sensitive actions surface an approval card before they run, secrets are masked in tool output, and the gateway enforces ownership checks so one account can't reach another's projects or tokens.</p>
+          <div class="cap-tools"><code>approval cards</code><code>secret masking</code><code>ownership checks</code></div>
+        </div>
+      </div>
+
+      <div class="product-gallery">
+        <figure>
+          <img class="editor-shot editor-shot-dark" src="assets/jait-terminal-dark-2026-08.png" alt="Jait running a real command in an embedded terminal beside the file tree and agent chat, dark theme" width="1440" height="810" loading="lazy">
+          <img class="editor-shot editor-shot-light" src="assets/jait-terminal-light-2026-08.png" alt="Jait running a real command in an embedded terminal beside the file tree and agent chat, light theme" width="1440" height="810" loading="lazy">
+          <figcaption><strong>A real PTY, not a transcript.</strong> The file tree, the editor, a live terminal, and the agent share one window — so the thing that runs your build is the same thing you're talking to. Follows your light or dark choice above.</figcaption>
+        </figure>
+      </div>
+
+      <div class="status-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <p><strong>Being straight with you:</strong> Jait is young and it still breaks. It's a passion project shipped in the open — 650+ releases so far, and plenty of rough edges left. If something falls over, an issue genuinely helps more than a star. That's the deal.</p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- ══════ How it works ══════ -->
+    <div class="section-card reveal" id="how-it-works">
+      <h2>How it actually works</h2>
+      <p class="section-sub">One process on your machine. No cloud backend, no account with us, nothing to sign up for.</p>
+
+      <div class="flow reveal-stagger">
+        <div class="flow-step reveal" style="--i:0">
+          <div class="flow-num">Step 01</div>
+          <h4>Install the gateway</h4>
+          <p>A single npm package, or the desktop app that bundles everything. Needs Node 22.5+ — that's the whole dependency list.</p>
+        </div>
+        <div class="flow-step reveal" style="--i:1">
+          <div class="flow-num">Step 02</div>
+          <h4>It runs where your code is</h4>
+          <p>A Fastify server with a local SQLite database in <code>~/.jait</code>. Your files, chats, and memories are rows on your own disk — you can delete the folder and it's gone.</p>
+        </div>
+        <div class="flow-step reveal" style="--i:2">
+          <div class="flow-num">Step 03</div>
+          <h4>Open it from any device</h4>
+          <p>The gateway serves a web UI to any browser on your network, plus desktop and mobile clients. The same session streams live to all of them over WebSocket.</p>
+        </div>
+        <div class="flow-step reveal" style="--i:3">
+          <div class="flow-num">Step 04</div>
+          <h4>Bring your own brain</h4>
+          <p>Point it at a CLI provider you're already signed into, any OpenAI-compatible endpoint, or a fully local model. Jait supplies the tools; you choose the model.</p>
+        </div>
+      </div>
+
+      <h3>Where the model fits in</h3>
+      <p>Jait isn't a model and doesn't resell one. It's the workspace around it — the tools, approvals, previews, memory, and multi-device plumbing. That means the interesting question isn't "which model does it use", it's "what is the model allowed to touch". You answer that, per action.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- ══════ Why Jait ══════ -->
+    <div class="section-card reveal" id="why">
+      <h2>Why bother self-hosting an agent</h2>
+      <p class="section-sub">The honest pitch, for people deciding whether this is worth twenty minutes.</p>
+
+      <div class="why-list reveal-stagger">
+        <div class="why-item reveal" style="--i:0">
+          <div class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+          <div>
+            <h4>Your repo stays on your disk</h4>
+            <p>Files, terminals, and browser sessions never leave the machine. The only thing that goes out is what the model you picked needs to see — and with Ollama or LM Studio, not even that.</p>
+          </div>
+        </div>
+        <div class="why-item reveal" style="--i:1">
+          <div class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+          <div>
+            <h4>No second subscription</h4>
+            <p>Already paying for Codex, Claude Code, Gemini, Copilot, or OpenCode? Jait drives the CLI you're signed into. It adds a workspace, not another bill.</p>
+          </div>
+        </div>
+        <div class="why-item reveal" style="--i:2">
+          <div class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+          <div>
+            <h4>It finishes things, not just answers</h4>
+            <p>Running the test suite, opening the preview, and clicking through the page are all inside the loop. The agent can check its own work instead of handing you a guess.</p>
+          </div>
+        </div>
+        <div class="why-item reveal" style="--i:3">
+          <div class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+          <div>
+            <h4>Start at the desk, finish on the couch</h4>
+            <p>Kick off a long refactor on your laptop and watch it from your phone. Same session, live. Queue a follow-up message and it drains when the current turn lands.</p>
+          </div>
+        </div>
+        <div class="why-item reveal" style="--i:4">
+          <div class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+          <div>
+            <h4>Readable, testable, MIT</h4>
+            <p>Around 250k lines of TypeScript with 300+ test files, in the open. If you don't like how something behaves, the code is right there and PRs are welcome.</p>
+          </div>
+        </div>
+        <div class="why-item reveal" style="--i:5">
+          <div class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></div>
+          <div>
+            <h4>Put it on a box and forget it</h4>
+            <p>Ships with a systemd unit. Run it on a homelab server or VPS, reach it from anywhere on your network, and update in place with <code>jait update</code>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- ══════ Use cases ══════ -->
+    <div class="section-card reveal" id="use-cases">
+      <h2>What that looks like in practice</h2>
+      <p class="section-sub">Four things people actually use it for.</p>
+
+      <div class="usecases reveal-stagger">
+        <div class="usecase reveal" style="--i:0">
+          <div class="uc-tag">Ship a feature</div>
+          <p class="uc-quote">"Add refresh tokens to the auth middleware and prove it works."</p>
+          <p>It edits the files, runs the type-checker and tests, opens the preview, and clicks through the login flow — then shows you the diff with the evidence attached.</p>
+        </div>
+        <div class="usecase reveal" style="--i:1">
+          <div class="uc-tag">Understand a codebase</div>
+          <p class="uc-quote">"Where does billing state get mutated?"</p>
+          <p>The code-graph index traces call paths across the repo instead of grepping and hoping, and it can draw the architecture diagram it built along the way.</p>
+        </div>
+        <div class="usecase reveal" style="--i:2">
+          <div class="uc-tag">Run it on a server</div>
+          <p class="uc-quote">"Watch the deploy and tell me if it fails."</p>
+          <p>Installed as a systemd daemon on a homelab box, with a cron job driving the check and a WhatsApp message when something needs you.</p>
+        </div>
+        <div class="usecase reveal" style="--i:3">
+          <div class="uc-tag">Clear the backlog</div>
+          <p class="uc-quote">"Take these three issues in parallel."</p>
+          <p>Manager mode fans the work out to background threads on separate worktrees, each with its own diff, so nothing steps on anything else.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- ══════ FAQ ══════ -->
+    <div class="section-card reveal" id="faq">
+      <h2>Questions you're probably about to ask</h2>
+      <p class="section-sub">The ones that decide whether you install it.</p>
+
+      <div class="faq">
+        <details>
+          <summary>Does my code get uploaded anywhere?</summary>
+          <p>Not by Jait. The gateway runs on your machine and stores everything in a local SQLite database at <code>~/.jait</code>. There's no Jait cloud, no account with us, and no telemetry service to opt out of. The one thing that leaves is whatever your chosen model provider needs to see — so if you run Ollama or LM Studio locally, nothing leaves at all.</p>
+        </details>
+        <details>
+          <summary>Do I need an API key?</summary>
+          <p>Only if you want to use an API-based model. If you're already signed into a CLI provider — Codex, Claude Code, Gemini CLI, Copilot CLI, or OpenCode — Jait drives that directly and no key is needed. A fully local model works too.</p>
+        </details>
+        <details>
+          <summary>What does it cost?</summary>
+          <p>Jait is MIT-licensed and free. You pay whatever your model provider charges, which may be nothing if you run locally or already have a subscription.</p>
+        </details>
+        <details>
+          <summary>What do I need to run it?</summary>
+          <p>Node 22.5 or newer on Windows, macOS, or Linux, then <code>npm install -g @jait/gateway</code>. If you'd rather not touch npm, the desktop app bundles the gateway and UI in one window.</p>
+        </details>
+        <details>
+          <summary>Can I run it on a server and use it from my laptop?</summary>
+          <p>Yes — that's a first-class setup. <code>jait daemon install</code> registers a systemd user service that starts on boot, and the UI is then reachable from any browser on your network. You can also attach other machines as remote nodes and work across them from one chat.</p>
+        </details>
+        <details>
+          <summary>How much can the agent do without asking me?</summary>
+          <p>You decide. Sensitive and destructive actions raise an approval card before they run, secrets are masked in tool output, and the agent loop has hard backstops against runaway rounds. Everything it does is visible as a tool card in the transcript.</p>
+        </details>
+        <details>
+          <summary>Is it stable enough to rely on?</summary>
+          <p>Not yet, and it would be dishonest to say otherwise. It's early, it breaks, and it changes fast — 650+ releases and counting. It's very usable for day-to-day building if you're the kind of person who files a bug report when something misbehaves. If you need something battle-hardened, wait a few months and check back.</p>
+        </details>
+        <details>
+          <summary>How do I update?</summary>
+          <p>Run <code>jait update</code>, or use <strong>Settings → Check for updates → Apply</strong> in the UI. Gateways started with <code>jait start</code> or the systemd daemon restart themselves afterwards.</p>
+        </details>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
     <!-- ══════ Downloads ══════ -->
     <div class="section-card reveal" id="downloads">
-      <h2>Available everywhere</h2>
-      <p class="section-sub">Desktop, mobile, and CLI - grab the latest gateway and app builds from GitHub Releases or npm.</p>
-      <div class="platform-icons reveal-stagger" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:20px;justify-content:center">
+      <h2>Get started in two commands</h2>
+      <p class="section-sub">Install the gateway, start it, open your browser. Everything else happens in the UI.</p>
+
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:16px">
+        <span class="install-cmd">
+          <span><span class="prefix">$</span> npm install -g @jait/gateway</span>
+          <button class="copy-btn" data-copy="npm install -g @jait/gateway" aria-label="Copy install command">
+            <svg class="icon-clipboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><polyline points="20 6 9 17 4 12"/></svg>
+          </button>
+        </span>
+        <span class="install-cmd">
+          <span><span class="prefix">$</span> jait start</span>
+          <button class="copy-btn" data-copy="jait start" aria-label="Copy start command">
+            <svg class="icon-clipboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><polyline points="20 6 9 17 4 12"/></svg>
+          </button>
+        </span>
+      </div>
+      <p style="font-size:0.88rem">Then open <code>http://localhost:8000</code>, create a local account, and pick a provider. Prefer a single window? The desktop app bundles the gateway and UI together — no npm required. Running it on a server? <code>jait daemon install</code> sets up a systemd service that starts on boot.</p>
+
+      <h3>Every platform</h3>
+      <div class="platform-icons reveal-stagger" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:8px">
         <a href="https://github.com/Widev-e-U/Jait/releases" class="platform-link reveal" style="--i:0" title="Windows">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg>
           <span>Windows</span>
@@ -1690,6 +2117,25 @@
         <a href="https://www.npmjs.com/package/@jait/gateway" class="platform-link reveal" style="--i:4" title="npm">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 7.334v8h6.666v1.332H12v-1.332h12v-8H0zm6.666 6.664H5.334v-4H3.999v4H1.335V8.667h5.331v5.331zm4 0v1.336H8.001V8.667h5.334v5.332h-2.669v-.001zm12.001 0h-1.33v-4h-1.336v4h-1.335v-4h-1.33v4h-2.671V8.667h8.002v5.331zM10.665 10H12v2.667h-1.335V10z"/></svg>
           <span>npm</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- ══════ Community CTA ══════ -->
+    <div class="section-card reveal" id="community">
+      <h2>It's better with people breaking it</h2>
+      <p class="section-sub">Jait is a passion project built in the open. The fastest way to make it good is to tell me what fell over.</p>
+      <p>If you install it and something misbehaves, open an issue — that genuinely helps more than a star. If you want to talk through an idea first, Discord is the quicker route. And if you'd rather just read the code before trusting it with a terminal, that's the most reasonable thing you could do; it's all there.</p>
+      <div class="hero-cta" style="margin-top:20px">
+        <a href="https://github.com/Widev-e-U/Jait/issues" class="btn btn-primary">
+          Report something broken
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="https://discord.gg/aqVPr2Jb" class="btn btn-outline">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.099.246.197.373.291a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.893.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.331c-1.182 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+          Join the Discord
         </a>
       </div>
     </div>
