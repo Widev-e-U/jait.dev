@@ -64,11 +64,6 @@
       background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(248,248,252,0.88));
       box-shadow: 0 24px 80px -48px rgba(0,0,0,0.08);
     }
-    html.light .feature-card {
-      background: rgba(255,255,255,0.8);
-      box-shadow: 0 8px 32px -16px rgba(0,0,0,0.08);
-    }
-    html.light .feature-card:hover { box-shadow: 0 16px 48px -20px rgba(0,0,0,0.12); }
     html.light .method-card,
     html.light .download-card {
       background: rgba(255,255,255,0.7);
@@ -172,12 +167,6 @@
     html.light .hero-logo .name { color: var(--text); }
     html.light .hero-logo .subtitle { color: var(--muted); }
     html.light .hero-tagline { color: var(--text); }
-    html.light .feature-card h3 { color: var(--text); }
-    html.light .feature-card .fc-icon {
-      background: rgba(245,247,250,0.9);
-      border-color: var(--border);
-    }
-    html.light .feature-card .fc-icon svg { color: var(--text); }
     html.light .caps .cap svg { color: var(--muted); }
     html.light .theme-toggle {
       background: rgba(255,255,255,0.85);
@@ -364,7 +353,6 @@
     .hero-desc    { animation: fadeInUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.4s both; }
     .caps         { animation: fadeInUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.5s both; }
     .hero-cta     { animation: fadeInUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.6s both; }
-    .feature-cards { animation: fadeInUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.7s both; }
     .control-surface { animation: scaleIn 0.8s cubic-bezier(0.16,1,0.3,1) 0.4s both; }
 
     /* ── Hero ──────────────────────────────────── */
@@ -461,35 +449,6 @@
     }
     .btn-outline:hover { border-color: var(--muted); background: rgba(24,24,28,0.8); }
     .btn svg { width: 16px; height: 16px; }
-
-    /* Feature cards */
-    .feature-cards { display: grid; gap: 12px; }
-    @media (min-width: 768px) { .feature-cards { grid-template-columns: repeat(3,1fr); } }
-    .feature-card {
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      background: var(--card);
-      padding: 22px;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 18px 60px -42px rgba(15,23,42,0.4);
-      transition: border-color 0.25s, transform 0.25s cubic-bezier(0.16,1,0.3,1), box-shadow 0.25s;
-    }
-    .feature-card:hover {
-      border-color: rgba(56,189,248,0.3);
-      transform: translateY(-3px);
-      box-shadow: 0 24px 72px -36px rgba(15,23,42,0.5);
-    }
-    .feature-card .fc-icon {
-      width: 40px; height: 40px;
-      display: flex; align-items: center; justify-content: center;
-      border-radius: 1rem;
-      border: 1px solid var(--border);
-      background: rgba(9,9,11,0.85);
-      margin-bottom: 14px;
-    }
-    .feature-card .fc-icon svg { width: 18px; height: 18px; color: var(--text); }
-    .feature-card h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; }
-    .feature-card p { font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.6; }
 
     /* ── Control surface (right column) ────────── */
     .control-surface { display: flex; min-width: 0; align-items: stretch; }
@@ -1410,7 +1369,7 @@
 
           <h1 class="hero-tagline">An AI agent workspace that runs on your machine.</h1>
           <p class="hero-desc">Jait is one small gateway you install yourself. It gives an agent real terminals, your filesystem, a controllable browser, live previews, memory, and scheduled jobs — then lets you reach all of it from your laptop, your server, or your phone. Your code never leaves your disk, and you bring whichever model you already pay for.</p>
-          <p class="hero-desc" style="font-size:0.92rem"><a href="agent.html">Explore the agent workspace →</a> &nbsp;·&nbsp; <a href="#capabilities">See every capability →</a></p>
+          <p class="hero-desc" style="font-size:0.92rem"><a href="#capabilities">See everything it can do →</a></p>
 
           <div class="hero-editor-shot">
             <figure>
@@ -1456,46 +1415,21 @@
               <svg viewBox="0 0 24 24" fill="currentColor" style="color:#9a77db"><path d="M9.11 8.18a.75.75 0 0 1 1.06-.02l.82.78.82-.78a.75.75 0 1 1 1.03 1.09l-1.1 1.04 1.1 1.04a.75.75 0 0 1-1.03 1.09l-.82-.78-.82.78a.75.75 0 0 1-1.03-1.09l1.1-1.04-1.1-1.04a.75.75 0 0 1-.03-1.07Z"/><path d="M12 1C6.2 1 2.48 4.36 1.28 8.42a3.7 3.7 0 0 0-.3 1.75 3.55 3.55 0 0 0-.45 1.87c.06.86.49 1.6 1.1 2.13A3.49 3.49 0 0 0 2.4 16c.58 1.57 1.83 3 3.6 3h1v-1.5H5.98c-1.2 0-2.12-1-2.58-2.22a2 2 0 0 1-.53-1.21 1.99 1.99 0 0 1 .33-1.34.75.75 0 0 0 .15-.55c-.05-.49.06-.98.2-1.42C4.22 8.06 6.96 5.5 9.86 4.59a10 10 0 0 1 4.28 0c2.9.91 5.64 3.47 6.31 6.27.14.44.25.93.2 1.42a.75.75 0 0 0 .15.55c.22.37.35.83.33 1.34a2 2 0 0 1-.53 1.21c-.46 1.22-1.38 2.22-2.58 2.22H17V19h1c1.77 0 3.02-1.43 3.6-3a3.49 3.49 0 0 0 .77-1.83c.61-.53 1.04-1.27 1.1-2.13.06-.68-.12-1.32-.44-1.87a3.7 3.7 0 0 0-.31-1.75C21.52 4.36 17.8 1 12 1ZM8.5 15.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm8-1a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/></svg>
               Copilot CLI <span class="prov-badge live">Live</span>
             </span>
-            <span class="prov-pill" style="--i:5">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#f3b46a"><circle cx="12" cy="12" r="8"/><path d="M8 15c1.5-4 6.5-4 8 0M9 9h.01M15 9h.01"/></svg>
-              Ollama <span class="prov-badge live">Live</span>
-            </span>
-            <span class="prov-pill" style="--i:6">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#b69cff"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M7 16V8l5 6 5-6v8"/></svg>
-              LM Studio <span class="prov-badge live">Live</span>
-            </span>
-            <span class="prov-pill" style="--i:7">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#65cce8"><path d="M3 7h18M3 12h18M3 17h18"/><circle cx="6" cy="7" r="1" fill="currentColor"/><circle cx="6" cy="12" r="1" fill="currentColor"/><circle cx="6" cy="17" r="1" fill="currentColor"/></svg>
-              vLLM <span class="prov-badge live">Live</span>
-            </span>
-            <span class="prov-pill byom" style="--i:8;border-style:dashed">
+            <span class="prov-pill byom" style="--i:5;border-style:dashed">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
               Any model
             </span>
           </div>
-          <p class="byom-note">Use Codex, Claude Code, Gemini, OpenCode, Copilot, Ollama, LM Studio, vLLM, or any OpenAI-compatible endpoint while Jait keeps tools, previews, files, and prompts in one workspace.</p>
+          <p class="byom-note">Use Codex, Claude Code, Gemini, OpenCode, Copilot, Ollama, LM Studio, vLLM, or any OpenAI-compatible endpoint. Jait also shows provider usage and CLI updates where supported.</p>
 
           <div class="caps">
-            <span class="cap">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="7" y1="12" x2="17" y2="12"/></svg>
-              Local-first gateway
-            </span>
-            <span class="cap">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-              Screen share + browser
-            </span>
-            <span class="cap">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-              Todo + memory workflows
-            </span>
-            <span class="cap">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-              Swarm agents + diffs
-            </span>
+            <span class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M12 3v18"/></svg> Parallel chats</span>
+            <span class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 8 8 12 4 16"/><path d="M11 16h8M2 3h20v18H2z"/></svg> Live tool output</span>
+            <span class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="16" r="2"/><path d="M6 7v10m0-8c0 5 12 1 12 5"/></svg> Source control</span>
+            <span class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4L12 2z"/></svg> Your choice of model</span>
           </div>
 
           <div class="hero-cta">
-            <a href="agent.html" class="btn btn-outline">Explore agent workspace →</a>
             <a href="#downloads" class="btn btn-primary">
               Get started
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -1506,29 +1440,6 @@
             </a>
           </div>
 
-          <div class="feature-cards">
-            <div class="feature-card">
-              <div class="fc-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
-              </div>
-              <h3>Guarded tools that can actually work</h3>
-              <p>Watch live terminal output in tool cards, review file changes, and approve guarded actions as the agent works.</p>
-            </div>
-            <div class="feature-card">
-              <div class="fc-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
-              </div>
-              <h3>Parallel chats and agents</h3>
-              <p>Open chats side by side, fork a conversation to try another direction, and track background agents in manager views.</p>
-            </div>
-            <div class="feature-card">
-              <div class="fc-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16.1A5 5 0 0 1 5.9 20M2 12.05A9 9 0 0 1 9.95 20M2 8V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6"/><line x1="2" y1="20" x2="2.01" y2="20"/></svg>
-              </div>
-              <h3>Reach it from anywhere</h3>
-              <p>Polished web, desktop, and mobile clients, plus WhatsApp channel replies and remote node deploys that link other machines as filesystem nodes.</p>
-            </div>
-          </div>
         </div>
 
         <!-- Right column — Jait app preview -->
@@ -1844,7 +1755,7 @@
 
         <div class="cap-group reveal" style="--i:1">
           <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg> Real terminal execution</h3>
-          <p>Full PTY terminals, not a sandboxed echo. The agent runs builds and tests, streams output live, and can target a specific terminal you point it at. Elevated commands and installs ask first.</p>
+          <p>Full PTY terminals, not a sandboxed echo. The agent runs builds and tests, with live output inside its tool cards, and can target a specific terminal you point it at. Elevated commands and installs ask first.</p>
           <div class="cap-tools"><code>jait.terminal</code><code>terminal.run</code><code>terminal.stream</code><code>elevated.run</code><code>os.install</code></div>
         </div>
 
@@ -1862,13 +1773,13 @@
 
         <div class="cap-group reveal" style="--i:4">
           <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Agent orchestration</h3>
-          <p>Four modes: Developer for hands-on work, Manager to delegate, Swarm to fan out, Thread for focused side-runs. Sub-agents stream inline, share a todo list, and message each other. Loop backstops and duplicate-call quarantine stop runaway runs.</p>
+          <p>Open project chats side by side or use Ask in parallel to explore another direction. Manager and Swarm modes coordinate background agents, while inline updates, shared todos, and loop backstops keep their work visible.</p>
           <div class="cap-tools"><code>agent.spawn</code><code>agent.message</code><code>thread.control</code><code>jait.todos</code></div>
         </div>
 
         <div class="cap-group reveal" style="--i:5">
           <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.22-8.56"/><polyline points="21 3 21 9 15 9"/></svg> Memory &amp; continuity</h3>
-          <p>Durable memories survive across sessions and projects, and the agent can search everything you've said before or pull the exact trace of an old chat. Drop durable instructions in <code>~/.jait/SOUL.md</code> and every provider picks them up.</p>
+          <p>Durable memories survive across sessions and projects, and the agent can search past chats or pull an exact trace. An optional System One model ranks tools, prompts, and memories; <code>~/.jait/SOUL.md</code> shares your durable instructions across providers.</p>
           <div class="cap-tools"><code>memory.save</code><code>memory.search</code><code>session.search</code><code>chat.traces</code></div>
         </div>
 
@@ -1898,7 +1809,7 @@
 
         <div class="cap-group reveal" style="--i:10">
           <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v12"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg> Pull requests &amp; Git</h3>
-          <p>Open, inspect, and resolve PRs from the workspace, including merge-conflict inspection and resolution. Every GitHub operation is bound to <em>your</em> encrypted token — never a shared gateway credential.</p>
+          <p>Review changed files in the source control sidebar and diff HUD. Open, inspect, and resolve PRs from the workspace; GitHub operations use <em>your</em> encrypted token.</p>
           <div class="cap-tools"><code>PR review</code><code>conflict resolution</code><code>worktrees</code><code>source control</code></div>
         </div>
 
