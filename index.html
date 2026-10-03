@@ -3,13 +3,88 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jait — Just Another Intelligent Tool</title>
-  <meta name="description" content="Jait is a free, MIT-licensed AI agent workspace you self-host. 64 built-in tools — real terminals, filesystem, browser control, live previews, memory, cron jobs, remote nodes — with your code staying on your own machine. Bring Codex, Claude Code, Gemini, Copilot, or a local model." />
-  <meta property="og:title" content="Jait — a local-first AI agent workspace" />
-  <meta property="og:description" content="Self-hosted AI coding agent with real terminals, browser control, live previews, memory, and scheduled jobs. Your code stays on your machine. MIT licensed." />
+  <title>Jait | AI Network Security &amp; Cybersecurity Workbench</title>
+  <meta name="description" content="Open-source, self-hosted AI network security and cybersecurity workbench. Discover hosts, investigate with SSH, and build safer homelab workflows with Jait." />
+  <link rel="canonical" href="https://jait.dev/" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta property="og:site_name" content="Jait" />
+  <meta property="og:title" content="Jait | AI Network Security &amp; Cybersecurity Workbench" />
+  <meta property="og:description" content="Open-source, self-hosted AI network security and cybersecurity workbench. Discover hosts, investigate with SSH, and build safer homelab workflows with Jait." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://jait.dev" />
+  <meta property="og:url" content="https://jait.dev/" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://jait.dev/assets/jait-editor-dark-2026-09.png" />
+  <meta property="og:image:width" content="1440" />
+  <meta property="og:image:height" content="810" />
+  <meta property="og:image:alt" content="Jait self-hosted workbench with agent chat, editor, and visible tools" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Jait | AI Network Security &amp; Cybersecurity Workbench" />
+  <meta name="twitter:description" content="Open-source, self-hosted AI network security and cybersecurity workbench. Discover hosts, investigate with SSH, and build safer homelab workflows with Jait." />
+  <meta name="twitter:image" content="https://jait.dev/assets/jait-editor-dark-2026-09.png" />
+  <meta name="twitter:image:alt" content="Jait self-hosted workbench with agent chat, editor, and visible tools" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://jait.dev/#organization",
+      "name": "Jait",
+      "url": "https://jait.dev/",
+      "logo": "https://jait.dev/icon.svg",
+      "sameAs": [
+        "https://github.com/Widev-e-U/Jait"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://jait.dev/#website",
+      "name": "Jait",
+      "alternateName": "Jait Security Workbench",
+      "url": "https://jait.dev/",
+      "description": "Open-source, self-hosted AI network security and cybersecurity workbench. Discover hosts, investigate with SSH, and build safer homelab workflows with Jait.",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "https://jait.dev/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://jait.dev/#webpage",
+      "url": "https://jait.dev/",
+      "name": "Jait | AI Network Security & Cybersecurity Workbench",
+      "description": "Open-source, self-hosted AI network security and cybersecurity workbench. Discover hosts, investigate with SSH, and build safer homelab workflows with Jait.",
+      "isPartOf": {
+        "@id": "https://jait.dev/#website"
+      },
+      "about": {
+        "@id": "https://jait.dev/#software"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://jait.dev/#software",
+      "name": "Jait",
+      "url": "https://jait.dev/",
+      "description": "Open-source, self-hosted AI network security and cybersecurity workbench. Discover hosts, investigate with SSH, and build safer homelab workflows with Jait.",
+      "applicationCategory": "SecurityApplication",
+      "operatingSystem": "Windows, macOS, Linux",
+      "license": "https://github.com/Widev-e-U/Jait/blob/main/LICENSE",
+      "isAccessibleForFree": true,
+      "downloadUrl": "https://www.npmjs.com/package/@jait/gateway",
+      "featureList": [
+        "Local host discovery",
+        "SSH and live terminals",
+        "Visible agent tool execution",
+        "Self-hosted gateway",
+        "Scheduled jobs",
+        "Bring your own AI model"
+      ]
+    }
+  ]
+}
+  </script>
   <link rel="icon" type="image/svg+xml" href="/icon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -335,7 +410,7 @@
       from { opacity: 0; transform: scale(0.96); }
       to   { opacity: 1; transform: scale(1); }
     }
-    .reveal {
+    .reveal-pending {
       opacity: 0;
       transform: translateY(24px);
       transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
@@ -345,6 +420,11 @@
       transform: translateY(0);
     }
     .reveal-stagger > .reveal { transition-delay: calc(var(--i, 0) * 80ms); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+      .reveal-pending { opacity: 1; transform: none; }
+    }
 
     /* Hero entrance animations */
     .hero-badge   { animation: fadeInUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.1s both; }
@@ -1347,14 +1427,14 @@
   </button>
 
   <!-- ══════ Unified card ══════ -->
-  <div class="sections-outer">
+  <main class="sections-outer" id="main-content">
     <div class="sections-wrapper">
       <div class="hero-grid">
         <!-- Left column -->
         <div>
           <div class="hero-badge">
             <span class="dot"></span>
-            Local-first AI workstation
+            Local-first security workbench
           </div>
 
           <div class="hero-logo">
@@ -1370,20 +1450,20 @@
             </div>
           </div>
 
-          <h1 class="hero-tagline">An AI agent workspace that runs on your machine.</h1>
-          <p class="hero-desc">Jait is one small gateway you install yourself. It gives an agent real terminals, your filesystem, a controllable browser, live previews, memory, and scheduled jobs — then lets you reach all of it from your laptop, your server, or your phone. Your code never leaves your disk, and you bring whichever model you already pay for.</p>
-          <p class="hero-desc" style="font-size:0.92rem"><a href="#capabilities">See everything it can do →</a></p>
+          <h1 class="hero-tagline">AI-assisted network security. Under your control.</h1>
+          <p class="hero-desc">Jait is an open-source, self-hosted workbench for AI-assisted network security and cybersecurity, built for homelabs and small networks. Bring your own model, investigate networks you own or are authorized to assess, and keep actions visible. Our focus: discover assets, understand exposure, prioritize fixes, and verify improvements with evidence.</p>
+          <p class="hero-desc" style="font-size:0.92rem"><a href="#security-direction">Explore the security direction →</a></p>
 
           <div class="hero-editor-shot">
             <figure>
-              <img class="editor-shot editor-shot-dark" src="assets/jait-editor-dark-2026-09.png" alt="Jait logged in with a project open in editor mode, dark theme" width="1440" height="810">
-              <img class="editor-shot editor-shot-light" src="assets/jait-editor-light-2026-09.png" alt="Jait logged in with a project open in editor mode, light theme" width="1440" height="810">
+              <img class="editor-shot editor-shot-dark" src="assets/jait-editor-dark-2026-09.png" alt="Jait logged in with a project open in editor mode, dark theme" width="1440" height="810" decoding="async">
+              <img class="editor-shot editor-shot-light" src="assets/jait-editor-light-2026-09.png" alt="Jait logged in with a project open in editor mode, light theme" width="1440" height="810" decoding="async">
             </figure>
           </div>
 
           <div class="release-stats">
             <div class="stat-tile">
-              <strong>64</strong>
+              <strong>120+</strong>
               <span>built-in agent tools</span>
             </div>
             <div class="stat-tile">
@@ -1391,8 +1471,8 @@
               <span>releases shipped</span>
             </div>
             <div class="stat-tile">
-              <strong>100%</strong>
-              <span>local &amp; self-hosted</span>
+              <strong>Your host</strong>
+              <span>execution &amp; storage</span>
             </div>
           </div>
 
@@ -1448,7 +1528,7 @@
         <!-- Right column — Jait app preview -->
         <div class="control-surface">
           <div class="product-shot-frame">
-            <img class="product-shot" src="assets/jait-editor-light-2026-09.png" alt="Jait's real agent workspace with chat, tools, and project controls" width="1440" height="810" fetchpriority="high">
+            <img class="product-shot" src="assets/jait-editor-light-2026-09.png" alt="Jait's real agent workspace with chat, tools, and project controls" width="1440" height="810" loading="lazy" decoding="async">
             <span class="product-shot-label">Actual Jait interface</span>
           </div>
           <div class="jait-app" style="min-height:0">
@@ -1527,14 +1607,27 @@
 
       <div class="section-divider"></div>
 
+    <div class="section-card reveal" id="security-direction">
+      <h2>Network security tools for your homelab</h2>
+      <p class="section-sub">Know what is connected. Understand what is exposed. Fix what matters. Verify the improvement.</p>
+      <div class="usecases reveal-stagger">
+        <div class="usecase reveal" style="--i:0"><div class="uc-tag">Available today</div><p>Network discovery, SSH, live terminals, local state, scheduling, and consent controls provide the foundation for visible investigations.</p></div>
+        <div class="usecase reveal" style="--i:1"><div class="uc-tag">Next: dedicated security tools</div><p>Scoped Nmap scans, protocol and configuration checks, evidence-backed findings, and fix verification. Curated Nuclei and Trivy integrations follow.</p></div>
+        <div class="usecase reveal" style="--i:2"><div class="uc-tag">First proving ground</div><p>The maintainer's own home network and homelab: inventory assets, check exposure, prioritize issues, and verify one improvement at a time.</p></div>
+        <div class="usecase reveal" style="--i:3"><div class="uc-tag">Operator control</div><p>Owned or authorized targets. Bounded checks. Reviewable changes. Clear coverage limits. AI explains evidence; it does not certify a network as secure.</p></div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
     <!-- ══════ From install to project — animated tutorial ══════ -->
     <div class="section-card reveal" id="tutorial">
-      <h2>Jait, with a real project open</h2>
+      <h2>The workbench today</h2>
       <p class="section-sub">The complete logged-in workspace in editor mode. The screenshot follows your light or dark theme choice.</p>
       <div class="product-gallery">
         <figure>
-          <img class="editor-shot editor-shot-dark" src="assets/jait-editor-dark-2026-09.png" alt="Jait logged in with a project open in editor mode, dark theme" width="1440" height="810" loading="lazy">
-          <img class="editor-shot editor-shot-light" src="assets/jait-editor-light-2026-09.png" alt="Jait logged in with a project open in editor mode, light theme" width="1440" height="810" loading="lazy">
+          <img class="editor-shot editor-shot-dark" src="assets/jait-editor-dark-2026-09.png" alt="Jait logged in with a project open in editor mode, dark theme" width="1440" height="810" loading="lazy" decoding="async">
+          <img class="editor-shot editor-shot-light" src="assets/jait-editor-light-2026-09.png" alt="Jait logged in with a project open in editor mode, light theme" width="1440" height="810" loading="lazy" decoding="async">
           <figcaption><strong>Project files, editor tools, architecture, preview, and agent chat in one workspace.</strong></figcaption>
         </figure>
       </div>
@@ -1747,11 +1840,11 @@
     <!-- ══════ Capability catalogue ══════ -->
     <div class="section-card reveal" id="capabilities">
       <h2>What Jait can actually do today</h2>
-      <p class="section-sub">These tools ship today. The agent picks from <strong>64 built-in tools</strong>, and they run through your own gateway.</p>
+      <p class="section-sub">Jait already ships a broad toolbox, including network discovery, SSH, terminals, browser tools, scheduling, and consent controls. These are the foundation; dedicated security scanner adapters and unified findings are planned.</p>
 
       <div class="cap-groups reveal-stagger">
         <div class="cap-group reveal" style="--i:0">
-          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Code, files &amp; repos</h3>
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Configuration, files &amp; repos</h3>
           <p>Read, write, and patch files with backup and restore. A code-graph index answers "what calls this?" across large repos, ranked search spans the gateway and any attached machines, and it can generate architecture diagrams from the code itself.</p>
           <div class="cap-tools"><code>file.read</code><code>file.write</code><code>file.patch</code><code>codegraph.query</code><code>architecture.generate</code></div>
         </div>
@@ -1764,7 +1857,7 @@
 
         <div class="cap-group reveal" style="--i:2">
           <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Browser control</h3>
-          <p>A Playwright-driven browser the agent can actually use — navigate, click, type, scroll, pick from dropdowns, and read structured page snapshots instead of guessing. There's a sandboxed Chromium container with noVNC when you want it fully isolated.</p>
+          <p>A Playwright-driven browser the agent can actually use — navigate, click, type, scroll, pick from dropdowns, and read structured page snapshots instead of guessing. Fresh profiles, custom viewports, file uploads, and network request inspection come standard, and screenshots land straight in the chat.</p>
           <div class="cap-tools"><code>browser.navigate</code><code>browser.click</code><code>browser.type</code><code>browser.snapshot</code><code>browser.screenshot</code></div>
         </div>
 
@@ -1793,8 +1886,8 @@
         </div>
 
         <div class="cap-group reveal" style="--i:7">
-          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg> Machines &amp; remote nodes</h3>
-          <p>Attach another machine as a filesystem node and work across both from one chat. Scan your network, SSH into boxes, share or record your screen for visual context, and let the agent speak results out loud.</p>
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg> Network discovery &amp; SSH</h3>
+          <p>Discover local hosts with ARP and selected port probes, then use SSH to inspect machines you administer. The current scan helps locate devices and Jait nodes; it is not a full vulnerability assessment.</p>
           <div class="cap-tools"><code>network.scan</code><code>ssh.run</code><code>screen.share</code><code>surfaces.list</code><code>voice.speak</code></div>
         </div>
 
@@ -1825,15 +1918,15 @@
 
       <div class="product-gallery">
         <figure>
-          <img class="editor-shot editor-shot-dark" src="assets/jait-terminal-dark-2026-09.png" alt="Jait with a project file and live terminal open beside agent chat in dark mode" width="1440" height="810" loading="lazy">
-          <img class="editor-shot editor-shot-light" src="assets/jait-terminal-light-2026-09.png" alt="Jait with a project file and live terminal open beside agent chat in light mode" width="1440" height="810" loading="lazy">
+          <img class="editor-shot editor-shot-dark" src="assets/jait-terminal-dark-2026-09.png" alt="Jait with a project file and live terminal open beside agent chat in dark mode" width="1440" height="810" loading="lazy" decoding="async">
+          <img class="editor-shot editor-shot-light" src="assets/jait-terminal-light-2026-09.png" alt="Jait with a project file and live terminal open beside agent chat in light mode" width="1440" height="810" loading="lazy" decoding="async">
           <figcaption><strong>A real terminal beside your project.</strong> The file tree, editor, live terminal, and agent chat share one window. The screenshot follows your light or dark choice above.</figcaption>
         </figure>
       </div>
 
       <div class="status-note">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <p><strong>Being straight with you:</strong> Jait is young and it still breaks. It's a passion project shipped in the open — 870+ releases so far, and plenty of rough edges left. If something falls over, an issue genuinely helps more than a star. That's the deal.</p>
+        <p><strong>Being straight with you:</strong> Jait is early. Its network and cybersecurity focus is taking shape on top of an existing agent runtime. Dedicated assessment profiles, scope enforcement, findings, and verification are roadmap work. A clean scan never proves a network is secure.</p>
       </div>
     </div>
 
@@ -1848,12 +1941,12 @@
         <div class="flow-step reveal" style="--i:0">
           <div class="flow-num">Step 01</div>
           <h4>Install the gateway</h4>
-          <p>A single npm package, or the desktop app that bundles everything. Needs Node 22.5+ — that's the whole dependency list.</p>
+          <p>A single npm package, or the desktop app that bundles everything. The gateway needs Node 22.5+. Future scanner integrations will have their own installation and permission requirements.</p>
         </div>
         <div class="flow-step reveal" style="--i:1">
           <div class="flow-num">Step 02</div>
-          <h4>It runs where your code is</h4>
-          <p>A Fastify server with a local SQLite database in <code>~/.jait</code>. Your files, chats, and memories are rows on your own disk — you can delete the folder and it's gone.</p>
+          <h4>It runs in your environment</h4>
+          <p>A Fastify server with a local SQLite database in <code>~/.jait</code>. Sessions and state live on your own disk. Keep access to the gateway restricted to trusted operators.</p>
         </div>
         <div class="flow-step reveal" style="--i:2">
           <div class="flow-num">Step 03</div>
@@ -1863,27 +1956,27 @@
         <div class="flow-step reveal" style="--i:3">
           <div class="flow-num">Step 04</div>
           <h4>Bring your own brain</h4>
-          <p>Point it at a CLI provider you're already signed into, any OpenAI-compatible endpoint, or a fully local model. Jait supplies the tools; you choose the model.</p>
+          <p>Point it at a coding CLI you're already signed into — Claude Code, Codex, Gemini CLI, OpenCode, Copilot — or an OpenAI-compatible endpoint, or a fully local model. Swap engines anytime without losing history.</p>
         </div>
       </div>
 
       <h3>Where the model fits in</h3>
-      <p>Jait isn't a model and doesn't resell one. It's the workspace around it — the tools, approvals, previews, memory, and multi-device plumbing. That means the interesting question isn't "which model does it use", it's "what is the model allowed to touch". You answer that, per action.</p>
+      <p>The model helps plan investigations and explain results. Tools provide measurements; operators review evidence and changes. Our security direction adds bounded assessments and provenance so findings can be checked and fixes can be retested.</p>
     </div>
 
     <div class="section-divider"></div>
 
     <!-- ══════ Why Jait ══════ -->
     <div class="section-card reveal" id="why">
-      <h2>Why bother self-hosting an agent</h2>
-      <p class="section-sub">The honest pitch, for people deciding whether this is worth twenty minutes.</p>
+      <h2>Security work in your own environment</h2>
+      <p class="section-sub">For homelabs, network owners, and small IT teams who want visibility and control.</p>
 
       <div class="why-list reveal-stagger">
         <div class="why-item reveal" style="--i:0">
           <div class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
           <div>
-            <h4>Your repo stays on your disk</h4>
-            <p>Files, terminals, and browser sessions never leave the machine. The only thing that goes out is what the model you picked needs to see — and with Ollama or LM Studio, not even that.</p>
+            <h4>Local execution and storage</h4>
+            <p>The gateway runs on your host and stores state locally. A cloud model receives the context sent to it. Local models reduce that disclosure; external tools and connectors may still make network requests.</p>
           </div>
         </div>
         <div class="why-item reveal" style="--i:1">
@@ -1896,28 +1989,28 @@
         <div class="why-item reveal" style="--i:2">
           <div class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
           <div>
-            <h4>It finishes things, not just answers</h4>
-            <p>Running the test suite, opening the preview, and clicking through the page are all inside the loop. The agent can check its own work instead of handing you a guess.</p>
+            <h4>Evidence before conclusions</h4>
+            <p>Visible tool execution lets you inspect what happened. The planned assessment layer will attach evidence, confidence, and coverage limits to findings, then repeat checks after a fix.</p>
           </div>
         </div>
         <div class="why-item reveal" style="--i:3">
           <div class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
           <div>
             <h4>Start at the desk, finish on the couch</h4>
-            <p>Kick off a long refactor on your laptop and watch it from your phone. Same session, live. Queue a follow-up message and it drains when the current turn lands.</p>
+            <p>Follow an investigation from your laptop or phone. Sessions and tool output stay on the gateway, so you can review progress and approvals across devices.</p>
           </div>
         </div>
         <div class="why-item reveal" style="--i:4">
           <div class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
           <div>
             <h4>Readable, testable, MIT</h4>
-            <p>Around 250k lines of TypeScript with 300+ test files, in the open. If you don't like how something behaves, the code is right there and PRs are welcome.</p>
+            <p>Around 200k lines of TypeScript with 350+ test files, in the open. If you don't like how something behaves, the code is right there and PRs are welcome.</p>
           </div>
         </div>
         <div class="why-item reveal" style="--i:5">
           <div class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></div>
           <div>
-            <h4>Put it on a box and forget it</h4>
+            <h4>Run it on your homelab</h4>
             <p>Ships with a systemd unit. Run it on a homelab server or VPS, reach it from anywhere on your network, and update in place with <code>jait update</code>.</p>
           </div>
         </div>
@@ -1928,30 +2021,14 @@
 
     <!-- ══════ Use cases ══════ -->
     <div class="section-card reveal" id="use-cases">
-      <h2>What that looks like in practice</h2>
-      <p class="section-sub">Four things people actually use it for.</p>
+      <h2>The security workflow we are building</h2>
+      <p class="section-sub">These are target workflows. Discovery and SSH ship today; dedicated checks, reports, and fix verification are planned.</p>
 
       <div class="usecases reveal-stagger">
-        <div class="usecase reveal" style="--i:0">
-          <div class="uc-tag">Ship a feature</div>
-          <p class="uc-quote">"Add refresh tokens to the auth middleware and prove it works."</p>
-          <p>It edits the files, runs the type-checker and tests, opens the preview, and clicks through the login flow — then shows you the diff with the evidence attached.</p>
-        </div>
-        <div class="usecase reveal" style="--i:1">
-          <div class="uc-tag">Understand a codebase</div>
-          <p class="uc-quote">"Where does billing state get mutated?"</p>
-          <p>The code-graph index traces call paths across the repo instead of grepping and hoping, and it can draw the architecture diagram it built along the way.</p>
-        </div>
-        <div class="usecase reveal" style="--i:2">
-          <div class="uc-tag">Run it on a server</div>
-          <p class="uc-quote">"Watch the deploy and tell me if it fails."</p>
-          <p>Installed as a systemd daemon on a homelab box, with a cron job driving the check and a WhatsApp message when something needs you.</p>
-        </div>
-        <div class="usecase reveal" style="--i:3">
-          <div class="uc-tag">Clear the backlog</div>
-          <p class="uc-quote">"Take these three issues in parallel."</p>
-          <p>Manager mode fans the work out to background threads on separate worktrees, each with its own diff, so nothing steps on anything else.</p>
-        </div>
+<div class="usecase reveal" style="--i:0"><div class="uc-tag">Discover · foundation available</div><p class="uc-quote">&ldquo;What is connected to my network?&rdquo;</p><p>Start with existing host discovery and SSH. Planned service inventory adds scan history, asset identity, and explicit assessment scope.</p></div>
+<div class="usecase reveal" style="--i:1"><div class="uc-tag">Assess · planned</div><p class="uc-quote">&ldquo;Which services are exposed, and what needs attention?&rdquo;</p><p>Bounded service, TLS, HTTP, SSH, and configuration checks will explain observations with evidence and show what was not checked.</p></div>
+<div class="usecase reveal" style="--i:2"><div class="uc-tag">Fix and verify · planned</div><p class="uc-quote">&ldquo;Help me fix this, then prove the check passes.&rdquo;</p><p>Review a concrete change and rollback path, apply it with authorization, and repeat the relevant check from the appropriate vantage point.</p></div>
+<div class="usecase reveal" style="--i:3"><div class="uc-tag">Monitor · planned</div><p class="uc-quote">&ldquo;Tell me when a new device or exposed service appears.&rdquo;</p><p>Build on existing scheduled jobs to compare authorized assessments against a baseline and report changes that deserve attention.</p></div>
       </div>
     </div>
 
@@ -1959,13 +2036,15 @@
 
     <!-- ══════ FAQ ══════ -->
     <div class="section-card reveal" id="faq">
-      <h2>Questions you're probably about to ask</h2>
+      <h2>Jait network security FAQ</h2>
       <p class="section-sub">The ones that decide whether you install it.</p>
 
       <div class="faq">
+        <details><summary>Can Jait test my network today?</summary><p>It can discover local hosts and run tools through terminals and SSH. Dedicated Nmap, Nuclei, and Trivy adapters, unified findings, and enforceable assessment scope are planned. Start with explicitly authorized, low-impact checks and review the output.</p></details>
+        <details><summary>Which networks can I assess?</summary><p>Networks you own or have explicit authorization to assess. Define targets, exclusions, methods, and execution location first. Discovery does not authorize testing every device found. Intrusive testing and configuration changes need authorization appropriate to their impact.</p></details>
         <details>
-          <summary>Does my code get uploaded anywhere?</summary>
-          <p>Not by Jait. The gateway runs on your machine and stores everything in a local SQLite database at <code>~/.jait</code>. There's no Jait cloud, no account with us, and no telemetry service to opt out of. The one thing that leaves is whatever your chosen model provider needs to see — so if you run Ollama or LM Studio locally, nothing leaves at all.</p>
+          <summary>Where does my network data go?</summary>
+          <p>Jait stores gateway state locally in <code>~/.jait</code>. Your chosen cloud model receives the context supplied to it, which may include tool results. A local model reduces that disclosure. Treat topology, logs, and credentials as sensitive; review what you share. Scanner updates and connectors may also contact external services.</p>
         </details>
         <details>
           <summary>Do I need an API key?</summary>
@@ -1977,11 +2056,11 @@
         </details>
         <details>
           <summary>What do I need to run it?</summary>
-          <p>Node 22.5 or newer on Windows, macOS, or Linux, then <code>npm install -g @jait/gateway</code>. If you'd rather not touch npm, the desktop app bundles the gateway and UI in one window.</p>
+          <p>Node 22.5 or newer on Windows, macOS, or Linux, then <code>npm install -g @jait/gateway</code>. If you'd rather not touch npm, the Windows desktop app bundles the gateway and UI in one window.</p>
         </details>
         <details>
           <summary>Can I run it on a server and use it from my laptop?</summary>
-          <p>Yes — that's a first-class setup. <code>jait daemon install</code> registers a systemd user service that starts on boot, and the UI is then reachable from any browser on your network. You can also attach other machines as remote nodes and work across them from one chat.</p>
+          <p>Yes — that's a first-class setup. <code>jait daemon install</code> registers a systemd user service that starts on boot, and the UI is then reachable from any browser on your network. You can also reach other boxes over SSH and drive them from the same chat.</p>
         </details>
         <details>
           <summary>How much can the agent do without asking me?</summary>
@@ -1989,7 +2068,7 @@
         </details>
         <details>
           <summary>Is it stable enough to rely on?</summary>
-          <p>Not yet, and it would be dishonest to say otherwise. It's early, it breaks, and it changes fast — 870+ releases and counting. It's very usable for day-to-day building if you're the kind of person who files a bug report when something misbehaves. If you need something battle-hardened, wait a few months and check back.</p>
+          <p>Jait is early and changes quickly. Dedicated security assessments are being designed and validated first on the maintainer's own network. Use evidence and independent checks for security decisions; this is not a guarantee of protection or a replacement for a mature security operations platform.</p>
         </details>
         <details>
           <summary>How do I update?</summary>
@@ -2021,7 +2100,7 @@
           </button>
         </span>
       </div>
-      <p style="font-size:0.88rem">Then open <code>http://localhost:8000</code>, create a local account, and pick a provider. Prefer a single window? The desktop app bundles the gateway and UI together — no npm required. Running it on a server? <code>jait daemon install</code> sets up a systemd service that starts on boot.</p>
+      <p style="font-size:0.88rem">Then open <code>http://localhost:8000</code>, create a local account, and pick an engine — Claude Code, Codex, Gemini CLI, OpenCode, Copilot, an API key, or a local model. Prefer a single window? The Windows desktop app bundles the gateway and UI together — no npm required. Running it on a server? <code>jait daemon install</code> sets up a systemd service that starts on boot.</p>
 
       <h3>Every platform</h3>
       <div class="platform-icons reveal-stagger" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:8px">
@@ -2029,15 +2108,15 @@
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg>
           <span>Windows</span>
         </a>
-        <a href="https://github.com/Widev-e-U/Jait/releases" class="platform-link reveal" style="--i:1" title="macOS">
+        <a href="https://www.npmjs.com/package/@jait/gateway" class="platform-link reveal" style="--i:1" title="macOS">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
           <span>macOS</span>
         </a>
-        <a href="https://github.com/Widev-e-U/Jait/releases" class="platform-link reveal" style="--i:2" title="Linux">
+        <a href="https://www.npmjs.com/package/@jait/gateway" class="platform-link reveal" style="--i:2" title="Linux">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.323 1.396-1.743 2.882-1.518 1.695-1.678 2.626-1.678 3.283 0 .956-.399 1.174-.94 2.07-.686 1.14-.118 3.729.565 4.567.748.914 2.395 1.506 2.823 1.506.299 0 .96-.059 1.58-.217.643-.164 1.35-.245 1.539-.245s.896.081 1.539.245c.62.158 1.281.217 1.58.217.428 0 2.075-.592 2.823-1.506.683-.838 1.251-3.427.565-4.567-.541-.896-.94-1.114-.94-2.07 0-.657-.16-1.588-1.678-3.283-1.42-1.486-1.667-1.79-1.743-2.882-.065-1.491 1.056-5.965-3.17-6.298-.165-.013-.325-.021-.48-.021zm-1.767 6.988c.573 0 1.103.285 1.328.736a.635.635 0 0 1-.057.672c-.142.193-.416.292-.672.292-.576 0-.965-.36-.965-.908 0-.284.143-.562.366-.792zm3.527 0c.223.23.366.508.366.792 0 .548-.389.908-.965.908-.256 0-.53-.099-.672-.292a.635.635 0 0 1-.057-.672c.225-.451.755-.736 1.328-.736zM8.394 12c.27 0 .513.058.76.169.68.308.868 1.04 1.073 1.808.193.723.41 1.544 1.274 2.08.244.15.37.39.37.695 0 .636-.537.802-.838.802-.37 0-.783-.27-1.13-.584-.756-.685-1.275-1.738-1.275-2.57 0-.9-.29-1.478-.29-1.978 0-.217.086-.422.056-.422zm7.212 0c-.03 0 .056.205.056.422 0 .5-.29 1.078-.29 1.978 0 .832-.519 1.885-1.275 2.57-.347.314-.76.584-1.13.584-.301 0-.838-.166-.838-.802 0-.305.126-.544.37-.695.864-.536 1.081-1.357 1.274-2.08.205-.768.393-1.5 1.073-1.808.247-.111.49-.169.76-.169z"/></svg>
           <span>Linux</span>
         </a>
-        <a href="https://github.com/Widev-e-U/Jait/releases" class="platform-link reveal" style="--i:3" title="Android">
+        <a href="https://github.com/Widev-e-U/Jait/tree/main/apps/mobile" class="platform-link reveal" style="--i:3" title="Android (build from source)">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.523 15.341a.96.96 0 0 0-.953.958c0 .529.427.96.953.96a.96.96 0 0 0 .957-.96.96.96 0 0 0-.957-.958m-11.046 0a.96.96 0 0 0-.955.958c0 .529.427.96.955.96a.96.96 0 0 0 .955-.96.96.96 0 0 0-.955-.958m11.4-6.015l1.96-3.394a.408.408 0 0 0-.148-.557.404.404 0 0 0-.554.148l-1.985 3.437a12.098 12.098 0 0 0-5.15-1.12c-1.832 0-3.55.4-5.15 1.12L4.865 5.523a.406.406 0 0 0-.554-.148.408.408 0 0 0-.149.557l1.96 3.394C2.68 11.267.336 14.954 0 19.2h24c-.336-4.246-2.68-7.933-6.123-9.874"/></svg>
           <span>Android</span>
         </a>
@@ -2046,14 +2125,15 @@
           <span>npm</span>
         </a>
       </div>
+      <p style="font-size:0.84rem;color:#94a3b8;margin-top:12px">The desktop installer ships for Windows today. The gateway itself runs anywhere Node runs — macOS and Linux included — and the Android client builds from source under <code>apps/mobile</code>.</p>
     </div>
 
     <div class="section-divider"></div>
 
     <!-- ══════ Community CTA ══════ -->
     <div class="section-card reveal" id="community">
-      <h2>It's better with people breaking it</h2>
-      <p class="section-sub">Jait is a passion project built in the open. The fastest way to make it good is to tell me what fell over.</p>
+      <h2>Build practical security tools with us</h2>
+      <p class="section-sub">Help shape a security workbench that is useful on real owned networks. Contribute reproducible checks, redacted fixtures, scanner integrations, and clear bug reports.</p>
       <p>If you install it and something misbehaves, open an issue — that genuinely helps more than a star. If you want to talk through an idea first, Discord is the quicker route. And if you'd rather just read the code before trusting it with a terminal, that's the most reasonable thing you could do; it's all there.</p>
       <div class="hero-cta" style="margin-top:20px">
         <a href="https://github.com/Widev-e-U/Jait/issues" class="btn btn-primary">
@@ -2068,7 +2148,7 @@
     </div>
 
     </div><!-- /sections-wrapper -->
-  </div>
+  </main>
 
   <footer>
     <div class="container">
@@ -2078,6 +2158,7 @@
 
   <script>
     // Scroll-triggered reveal animations via IntersectionObserver
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -2085,14 +2166,19 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    }, { threshold: 0, rootMargin: '0px' });
+    document.querySelectorAll('.reveal').forEach(el => {
+      el.classList.add('reveal-pending');
+      observer.observe(el);
+    });
+    }
 
     // ── Tutorial walkthrough auto-player ──────
     (() => {
       const STEP_DURATION = 5000;
       const steps = document.querySelectorAll('.tut-step');
       const scenes = document.querySelectorAll('.jait-scene');
+      if (!steps.length || !scenes.length || !('IntersectionObserver' in window)) return;
       let current = 0;
       let timer = null;
       let paused = false;
