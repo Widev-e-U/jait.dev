@@ -14,7 +14,20 @@
 /* Neutral surfaces keep the blue accent close to the app. */
 .tab{background:#16171b;border-color:#303238;color:#a1a1aa}.tab.active{background:#19273e;border-color:var(--accent);color:#edf3ff}.annotation{background:var(--panel);border-color:#383e4a}.annotation strong{color:#dce3ef}.media-window{background:#0a0c0e;border-color:#30343d}.demo:before{opacity:.35}.install{background:#101114}.text-link{border-color:#3d485a}.image-dialog{background:#0b0c0e;border-color:#30343d}.dialog-image-wrap{background:#0b0c0e}.agent-details>div{border-color:#3d485a}
 /* Decorative pockets end exactly at their button or section edge. */
-.cameo-layer{position:absolute;inset:0 0 auto;height:0;z-index:5;pointer-events:none;user-select:none}.agent-cameo{position:absolute;overflow:hidden;pointer-events:none;contain:layout paint;opacity:1}.cameo-reaction,.cameo-pose{display:block;width:100%;height:100%;pointer-events:none}.cameo-reaction{transition:transform .22s cubic-bezier(.3,0,.7,1)}.agent-cameo.is-caught .cameo-reaction{transform:translateY(24px)}.agent-cameo.is-side.is-caught .cameo-reaction{transform:translateX(-24px)}.agent-cameo svg{display:block;width:100%;height:auto;overflow:visible}.agent-cameo .agent-creature-body{transform-origin:50px 80px}.agent-cameo .agent-creature-eyes{transform-box:fill-box;transform-origin:center}.agent-cameo .agent-creature-pupils{will-change:transform}
+.cameo-layer{position:absolute;inset:0 0 auto;height:0;z-index:5;pointer-events:none;user-select:none}
+.agent-cameo{position:absolute;overflow:hidden;pointer-events:none;contain:layout paint;opacity:1}
+.cameo-reaction,.cameo-pose,.cameo-orient{display:block;width:100%;height:100%;pointer-events:none}
+.cameo-reaction{transition:transform .55s cubic-bezier(.2,1.5,.4,1)}
+.agent-cameo.is-caught .cameo-reaction{transform:translateY(32px);transition-duration:.16s;transition-timing-function:cubic-bezier(.5,0,.8,.4)}
+.agent-cameo[data-side="right"] .cameo-orient{transform:rotate(90deg)}
+.agent-cameo[data-side="left"] .cameo-orient{transform:rotate(-90deg)}
+.agent-cameo[data-side="right"].is-caught .cameo-reaction{transform:translateX(-38px)}
+.agent-cameo[data-side="left"].is-caught .cameo-reaction{transform:translateX(38px)}
+.agent-cameo svg{display:block;width:100%;height:auto;overflow:visible}
+.agent-cameo .agent-creature-body{transform-origin:50px 80px}
+.agent-cameo .agent-creature-paws{transform-origin:50px 58px}
+.agent-cameo .agent-creature-eyes{transform-box:fill-box;transform-origin:center}
+.agent-cameo .agent-creature-pupils{will-change:transform}
 @media(prefers-reduced-motion:reduce){.cameo-layer{display:none}.cameo-reaction{transition:none}}
 
 .cameo-toggle{border:0;background:none;padding:0;color:var(--muted);font:inherit;text-align:left;white-space:nowrap}.cameo-toggle:hover{color:var(--accent)}.cameo-toggle[hidden]{display:none}@media(max-width:640px){.footer-links{display:grid;grid-template-columns:repeat(2,max-content);gap:4px 24px}.footer-links a,.cameo-toggle{min-height:44px;display:inline-flex;align-items:center}.cameo-toggle[hidden]{display:none}}

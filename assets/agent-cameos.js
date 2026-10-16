@@ -15,7 +15,9 @@
   document.body.append(layer);
   const spots = [
     { selector: '.github-link', size: 42, align: .48 },
-    { selector: '[data-step="3"]', size: 55, side: true },
+    { selector: '[data-step="0"]', size: 62, side: 'left' },
+    { selector: '[data-step="3"]', size: 62, side: 'right' },
+    { selector: '.text-link', size: 58, side: 'right' },
     { selector: '.providers', size: 56, align: .82 },
     { selector: '.workspace-section', size: 60, align: .78 },
     { selector: '.install', size: 54, align: .80 },
@@ -32,7 +34,7 @@
   const unavailable = () => paused || motion.matches || document.hidden || document.getElementById('image-dialog')?.open;
   function sprite(index) {
     const color = colors[index], dx = index % 2 ? 1 : -1;
-    return `<svg class="agent-creature" viewBox="0 0 100 100" aria-hidden="true"><ellipse cx="50" cy="87" rx="24" ry="4" fill="${color}" opacity=".14"/><g class="agent-creature-body"><path d="${bodies[index % bodies.length]}" fill="${color}"/><path d="M25 57 Q18 51 17 60 M75 57 Q83 51 84 60" fill="none" stroke="${color}" stroke-width="8" stroke-linecap="round"/><ellipse cx="29" cy="59" rx="5" ry="3" fill="#fff" opacity=".25"/><ellipse cx="71" cy="59" rx="5" ry="3" fill="#fff" opacity=".25"/><g class="agent-creature-eyes"><ellipse cx="38" cy="46" rx="7" ry="9" fill="#fff"/><ellipse cx="62" cy="46" rx="7" ry="9" fill="#fff"/><g class="agent-creature-pupils"><ellipse cx="${38 + dx}" cy="47" rx="3" ry="4.5" fill="#243047"/><ellipse cx="${62 + dx}" cy="47" rx="3" ry="4.5" fill="#243047"/></g></g><path d="${index % 3 === 0 ? 'M43 62 Q50 69 57 62' : index % 3 === 1 ? 'M46 63 Q50 66 54 63' : 'M44 62 Q50 66 56 62'}" fill="none" stroke="#243047" stroke-width="2.5" stroke-linecap="round"/>${index >= 5 ? '<path d="M44 25 Q49 17 55 25" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".5"/>' : ''}</g></svg>`;
+    return `<svg class="agent-creature" viewBox="0 0 100 100" aria-hidden="true"><ellipse cx="50" cy="87" rx="24" ry="4" fill="${color}" opacity=".14"/><g class="agent-creature-body"><path d="${bodies[index % bodies.length]}" fill="${color}"/><path class="agent-creature-paws" d="M25 57 Q18 51 17 60 M75 57 Q83 51 84 60" fill="none" stroke="${color}" stroke-width="8" stroke-linecap="round"/><ellipse cx="29" cy="59" rx="5" ry="3" fill="#fff" opacity=".25"/><ellipse cx="71" cy="59" rx="5" ry="3" fill="#fff" opacity=".25"/><g class="agent-creature-eyes"><ellipse cx="38" cy="46" rx="7" ry="9" fill="#fff"/><ellipse cx="62" cy="46" rx="7" ry="9" fill="#fff"/><g class="agent-creature-pupils"><ellipse cx="${38 + dx}" cy="47" rx="3" ry="4.5" fill="#243047"/><ellipse cx="${62 + dx}" cy="47" rx="3" ry="4.5" fill="#243047"/></g></g><path d="${index % 3 === 0 ? 'M43 62 Q50 69 57 62' : index % 3 === 1 ? 'M46 63 Q50 66 54 63' : 'M44 62 Q50 66 56 62'}" fill="none" stroke="#243047" stroke-width="2.5" stroke-linecap="round"/>${index >= 5 ? '<path d="M44 25 Q49 17 55 25" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".5"/>' : ''}</g></svg>`;
   }
   function measure(spot) {
     const anchor = document.querySelector(spot.selector);
@@ -41,8 +43,11 @@
     if (!rect.width || rect.top < 12 || rect.top > innerHeight - 35 || rect.bottom < 0) return null;
     const size = innerWidth <= 640 ? Math.min(spot.size, 46) : spot.size;
     if (spot.side) {
-      if (rect.right + size > innerWidth - 12) return null;
-      return { spot, anchor, size, width: size, height: size, x: rect.right, y: rect.top + rect.height / 2 - size / 2 };
+      const x = spot.side === 'left' ? rect.left - size : rect.right;
+      if (x < 8 || x + size > innerWidth - 8) return null;
+      const y = rect.top + rect.height / 2 - size / 2;
+      if (y < 6 || y + size > innerHeight - 6) return null;
+      return { spot, anchor, size, width: size, height: size, x, y };
     }
     const height = Math.min(size, rect.top - 3);
     const x = Math.max(8, Math.min(innerWidth - size - 8, rect.left + rect.width * spot.align - size / 2));
@@ -96,7 +101,10 @@
     if (pointer && now - pointer.time < 2500) {
       const { x, y, size } = item.geometry;
       const dx = pointer.x - (x + size / 2), dy = pointer.y - (y + item.geometry.height / 2);
-      look = { x: Math.max(-2.4, Math.min(2.4, dx / 65)), y: Math.max(-1.4, Math.min(1.4, dy / 100)) };
+      const side = item.spot.side;
+      const localX = side === 'right' ? dy : side === 'left' ? -dy : dx;
+      const localY = side === 'right' ? -dx : side === 'left' ? dx : dy;
+      look = { x: Math.max(-2.8, Math.min(2.8, localX / 65)), y: Math.max(-1.8, Math.min(1.8, localY / 100)) };
       if (!item.caught && Math.hypot(dx, dy) < size * 1.6) {
         item.caught = true; item.node.classList.add('is-caught'); blink(item, true);
         item.reactionTimer = setTimeout(() => { if (active === item) { item.node.classList.remove('is-caught'); blink(item); } }, 1500);
@@ -116,28 +124,58 @@
     first = false; lastSpot = geometry.spot.selector;
     let color = Math.floor(random(0, colors.length)); if (color === lastColor) color = (color + 1) % colors.length; lastColor = color;
     const node = document.createElement('span'); node.className = 'agent-cameo' + (geometry.spot.side ? ' is-side' : '');
+    node.dataset.side = geometry.spot.side || 'top';
     node.dataset.spot = geometry.spot.selector; node.dataset.agent = String(color); node.setAttribute('aria-hidden', 'true');
-    node.innerHTML = `<span class="cameo-reaction"><span class="cameo-pose">${sprite(color)}</span></span>`;
+    node.innerHTML = `<span class="cameo-reaction"><span class="cameo-pose"><span class="cameo-orient">${sprite(color)}</span></span></span>`;
     layer.append(node);
     const item = { node, spot: geometry.spot, geometry, animations: [], eyes: node.querySelector('.agent-creature-eyes'), pupils: node.querySelector('.agent-creature-pupils'), gaze: { x: 0, y: 0 }, look: { x: -1.5, y: 0 }, nextLook: performance.now() + 1200 };
     active = item; position(item, geometry);
     const side = geometry.spot.side, size = geometry.size, height = geometry.height;
-    const pose = value => side ? `translateX(${-value}px)` : `translateY(${value}px)`;
+    const direction = side === 'left' ? 1 : -1;
+    const pose = (depth, scoot = 0) => side
+      ? `translate(${direction * depth}px, ${scoot}px)` : `translate(${scoot}px, ${depth}px)`;
     const hidden = side ? size + 8 : height + 8;
-    const shallow = side ? size * .55 : height - size * .55;
-    const peek = side ? size * .25 : height - size * .72;
-    const duck = side ? size * .82 : height - size * .28;
-    const animation = node.querySelector('.cameo-pose').animate([
-      { transform: pose(hidden), offset: 0 }, { transform: pose(shallow), offset: .11 },
-      { transform: pose(shallow), offset: .23 }, { transform: pose(duck), offset: .30 },
-      { transform: pose(peek), offset: .39 }, { transform: pose(peek), offset: .69 },
-      { transform: pose(shallow), offset: .78 }, { transform: pose(shallow), offset: .87 },
-      { transform: pose(hidden), offset: 1 },
-    ], { duration: random(7200, 9000), easing: 'cubic-bezier(.35,0,.25,1)', fill: 'both' });
+    const depth = visible => side ? size * (1 - visible) : height - size * visible;
+    const bouncy = Math.random() < .55;
+    node.dataset.mood = bouncy ? 'bouncy' : 'shy';
+    // Anticipation, a quick spring, and a softer landing give each peek weight.
+    // Pauses between gestures let the eyes lead before the body follows.
+    const beats = [
+      [0, hidden, 0, 0, 1, 1],
+      [.07, depth(.58), -1, -7, .92, 1.10],
+      [.11, depth(.53), 0, 3, 1.06, .94],
+      [.15, depth(.55), 0, 0, 1, 1],
+      [.24, depth(.55), 0, -3, 1, 1],
+      [.29, depth(.32), 1, -9, 1.16, .82],
+      [.34, depth(bouncy ? .94 : .82), -2, 8, .87, 1.14],
+      [.38, depth(.74), 0, -5, 1.12, .90],
+      [.42, depth(.78), 0, 2, .97, 1.03],
+      [.47, depth(.77), 0, 0, 1, 1],
+      [.56, depth(.77), 0, 0, 1.015, .985],
+      [.60, depth(.79), 2, 10, .98, 1.025],
+      [.65, depth(.77), -2, -8, 1.025, .98],
+      [.70, depth(.77), 0, 2, 1, 1],
+      [.76, depth(.56), 1, -5, 1.06, .94],
+      [.84, depth(.56), 1, -3, 1, 1],
+      [.88, depth(.60), -1, 8, .95, 1.06],
+      [.94, hidden, 0, -10, .9, 1.1],
+      [1, hidden, 0, 0, 1, 1],
+    ];
+    const duration = random(7800, 9400);
+    const timing = { duration, easing: 'linear', fill: 'both' };
+    const animation = node.querySelector('.cameo-pose').animate(beats.map(([offset, value, scoot]) => ({
+      offset, transform: pose(value, scoot), easing: 'cubic-bezier(.22,.65,.35,1)',
+    })), timing);
     item.animations.push(animation);
-    item.animations.push(node.querySelector('.agent-creature-body').animate([
-      { transform: 'rotate(-2deg) translateY(0)' }, { transform: 'rotate(2deg) translateY(-1px)' }, { transform: 'rotate(-2deg) translateY(0)' },
-    ], { duration: 2800, iterations: Infinity, easing: 'ease-in-out' }));
+    item.animations.push(node.querySelector('.agent-creature-body').animate(beats.map(([offset, , , tilt, sx, sy]) => ({
+      offset, transform: `rotate(${tilt}deg) scale(${sx},${sy})`, easing: 'cubic-bezier(.3,0,.3,1)',
+    })), timing));
+    item.animations.push(node.querySelector('.agent-creature-paws').animate([
+      { transform: 'translateY(0) rotate(0deg)' },
+      { transform: 'translateY(-2px) rotate(-3deg)' },
+      { transform: 'translateY(1px) rotate(2deg)' },
+      { transform: 'translateY(0) rotate(0deg)' },
+    ], { duration: random(1300, 1800), iterations: Infinity, easing: 'ease-in-out' }));
     animation.onfinish = () => { if (active === item) dismiss(); };
     nextBlink(item); item.raf = requestAnimationFrame(() => watch(item));
   }
