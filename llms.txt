@@ -1,0 +1,13 @@
+# Jait
+
+> Jait (Just Another Intelligent Tool) is an open-source, self-hosted personal agent harness. It connects the AI models you choose to real tools (terminal, filesystem, browser, SSH, computer control, email, calendar, messaging, Home Assistant) and adds persistent sessions, semantic memory, scheduled jobs, persistent agents and per-action consent controls. It is general-purpose, not security-only, and not a hosted service.
+
+## Docs
+- [What is Jait?](https://github.com/Widev-e-U/Jait/blob/main/docs/what-is-jait.md): capabilities and what Jait is not
+- [README](https://github.com/Widev-e-U/Jait#readme): install and configuration
+- [Vision](https://github.com/Widev-e-U/Jait/blob/main/docs/vision.md): project direction
+
+## Quick facts
+- Install: npm install -g @jait/gateway && jait start (http://localhost:8000)
+- License: MIT. Status: early, actively developed
+- Models: OpenAI-compatible APIs, OpenRouter, Ollama, CLI engines (Claude Code, Codex)

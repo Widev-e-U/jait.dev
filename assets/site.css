@@ -36,3 +36,4 @@
 
 /* Brand marks share a baseline with their labels at every viewport. */
 .github-link{display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap}.github-icon{display:block;width:17px;height:17px;flex-shrink:0}.providers li{display:flex;align-items:center;gap:8px}.providers li svg{display:block;width:22px;height:22px;flex-shrink:0}@media(max-width:640px){.github-link{gap:7px}.github-icon{width:16px;height:16px}.providers li svg{width:20px;height:20px}.providers ul{column-gap:22px;text-align:left}}
+.faq-section{border-top:1px solid var(--line);padding-top:90px}.faq-section h2{grid-column:1/-1;font-size:clamp(28px,3vw,36px);font-weight:550;letter-spacing:-1.4px;margin:0}.faq-section p{max-width:none}
