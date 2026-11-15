@@ -114,7 +114,7 @@
   $('image-dialog').addEventListener('click', e => { if (e.target === $('image-dialog')) $('image-dialog').close(); });
   $('copy-install').addEventListener('click', async () => {
     try {
-      await navigator.clipboard.writeText('npm install -g @jait/gateway\njait start');
+      await navigator.clipboard.writeText('npm install -g @jait/gateway\njait start --foreground');
       $('copy-install').textContent = 'Copied ✓'; $('copy-status').textContent = 'Setup commands copied';
       setTimeout(() => { $('copy-install').textContent = 'Copy commands'; }, 2000);
     } catch { $('copy-status').textContent = 'Select the commands to copy them.'; $('copy-install').textContent = 'Select to copy'; }
